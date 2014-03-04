@@ -15,8 +15,7 @@
         android:textColor="#33b5e5"
         android:textStyle="bold"
         android:textSize="50sp"
-        android:gravity="center"
-        android:text="@string/dummy_content" />
+        android:gravity="center" />
 
     <!-- This FrameLayout insets its children based on system windows using
          android:fitsSystemWindows. -->
@@ -33,14 +32,77 @@
             android:orientation="horizontal"
             tools:ignore="UselessParent">
 
-            <Button android:id="@+id/dummy_button"
-                style="?metaButtonBarButtonStyle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/dummy_button" />
-
         </LinearLayout>
+
+        <Button
+            android:layout_width="108dp"
+            android:layout_height="108dp"
+            android:text="App 3"
+            android:id="@+id/button3"
+            android:layout_gravity="right|top"
+            android:layout_marginTop="70dp" />
+
+        <Button
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:text="App 1"
+            android:id="@+id/button"
+            android:layout_gravity="left|top"
+            android:layout_marginTop="70dp" />
+
+        <Button
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:text="App 2"
+            android:id="@+id/button2"
+            android:layout_gravity="center_horizontal|top"
+            android:layout_marginTop="70dp" />
+
+        <Button
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:text="App 4"
+            android:id="@+id/button10"
+            android:layout_gravity="left|center_vertical" />
+
+        <Button
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:text="App 5"
+            android:id="@+id/button4"
+            android:layout_gravity="center" />
+
+        <Button
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:text="App 6"
+            android:id="@+id/button5"
+            android:layout_gravity="right|center_vertical" />
+
+        <Button
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:text="App 7"
+            android:id="@+id/button6"
+            android:layout_gravity="left|bottom"
+            android:layout_marginBottom="70dp" />
+
+        <Button
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:text="App 1"
+            android:id="@+id/button7"
+            android:layout_gravity="center_horizontal|bottom"
+            android:layout_marginBottom="70dp" />
+
+        <Button
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:text="App 1"
+            android:id="@+id/button8"
+            android:layout_gravity="right|bottom"
+            android:layout_marginBottom="70dp" />
+
     </FrameLayout>
 
 </FrameLayout>
