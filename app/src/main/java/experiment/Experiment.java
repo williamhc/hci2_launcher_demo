@@ -13,15 +13,27 @@ public class Experiment {
 	private int currentTrialIndex = 0;
 	private int participantNumber = 1;
 	private AnimalController animalController;
-	
-	public Experiment() {
+    private Animal[] frequent150, frequent50, infrequent150, infrequent50;
+
+
+    public Experiment() {
 		animalController = new AnimalController();
 		this.listOfTrials = new Trial[NUM_TRIALS];
+
+        initialzeAnimals();
+
 		initializeTrials();
 		currentTrialIndex = 0;
 	}
-	
-	private void initializeTrials() {
+
+    private void initialzeAnimals() {
+        frequent150 = animalController.getFrequentAnimals(150, TRIALS_PER_TREATMENT);
+        infrequent150 = animalController.getInfrequentAnimals(150, TRIALS_PER_TREATMENT);
+        frequent50 = animalController.getFrequentAnimals(50, TRIALS_PER_TREATMENT);
+        infrequent50 = animalController.getInfrequentAnimals(50, TRIALS_PER_TREATMENT);
+    }
+
+    private void initializeTrials() {
 		addTrialsForTechnique("Fitts' Wheel", TRIALS_PER_TREATMENT);
 		addTrialsForTechnique("GPS Launcher", TRIALS_PER_TREATMENT);
 		addTrialsForTechnique("Keyboard Search", TRIALS_PER_TREATMENT);
@@ -37,22 +49,21 @@ public class Experiment {
 		while (!treatmentsRemaining.isEmpty()) {
 			int randomNumber = (int)(Math.random() * 4) + 1;
 			if (randomNumber == 1 && treatmentsRemaining.contains(Integer.valueOf(1)))
-				addTrials(new Treatment(technique, 200, false), trials);
+				addTrials(new Treatment(technique, 150, false), this.infrequent150);
 			else if (randomNumber == 2 && treatmentsRemaining.contains(Integer.valueOf(2)))
-				addTrials(new Treatment(technique, 50, false), trials);
+				addTrials(new Treatment(technique, 50, false), this.infrequent50);
 			else if (randomNumber == 3 && treatmentsRemaining.contains(Integer.valueOf(3)))
-				addTrials(new Treatment(technique, 200, true), trials);
+				addTrials(new Treatment(technique, 150, true), this.frequent150);
 			else if (randomNumber == 4 && treatmentsRemaining.contains(Integer.valueOf(4)))
-				addTrials(new Treatment(technique, 50, true), trials);
+				addTrials(new Treatment(technique, 50, true), this.frequent50);
 			
 			treatmentsRemaining.remove(Integer.valueOf(randomNumber));
 		}
 	}
 	
-	private void addTrials(Treatment treatment, int trials) {
-		for (int index = 0; index < trials; index++) {
-			int trialNum = currentTrialIndex + 1;
-			listOfTrials[currentTrialIndex] = new Trial(trialNum, participantNumber, treatment, animalController);
+	private void addTrials(Treatment treatment, Animal[] animals) {
+		for (int index = 0; index < animals.length; index++) {
+			listOfTrials[currentTrialIndex] = new Trial(currentTrialIndex + 1, participantNumber, treatment, animals[index], animals);
 			currentTrialIndex++;
 		}
 	}

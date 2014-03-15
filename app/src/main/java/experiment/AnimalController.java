@@ -50,14 +50,26 @@ public class AnimalController {
 		}
 	}
 	
-	public Animal FrequentImage(int threshold) {
-		int randNum = (int)(Math.random() * threshold) + 1;
-		return animalImages50[randNum];
-	}
+	public Animal[] getFrequentAnimals(int animalCount, int count) {
+		Animal[] animals = animalCount == 50 ? animalImages50: animalImages150;
+        Animal[] frequentAnimals = new Animal[count];
+
+        for (int i = 0; i < count; i++) {
+            int randNum = (int) Math.floor(animalCount * 0.3 * Math.random());
+            frequentAnimals[i] = animals[randNum];
+        }
+        return frequentAnimals;
+    }
 	
-	public Animal InfrequentImage(int threshold) {
-		int randNum = 50 - ((int)(Math.random() * threshold) + 1);
-		return animalImages50[randNum];
+	public Animal[] getInfrequentAnimals(int animalCount, int count) {
+        Animal[] animals = animalCount == 50 ? animalImages50: animalImages150;
+        Animal[] frequentAnimals = new Animal[count];
+
+        for (int i = 0; i < count; i++) {
+            int randNum = animalCount - (int) Math.ceil(animalCount * 0.3 * Math.random());
+            frequentAnimals[i] = animals[randNum];
+        }
+        return frequentAnimals;
 	}
 	
 	public Animal[] AnimalImages150() {

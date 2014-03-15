@@ -9,31 +9,17 @@ public class Trial {
 	private Animal searchAnimal;
     private Animal[] allAnimals;
 
-	public Trial(int trialNum, int participantNum, Treatment treatment, AnimalController animalController) {
+	public Trial(int trialNum, int participantNum, Treatment treatment, Animal animal, Animal[] animals) {
 		this.trialNum = trialNum;
 		this.participantNum = participantNum;
 		this.treatment = treatment;
-		determineSearchImage(animalController);
-		determineAnimalImageList(animalController);
+        this.searchAnimal = animal;
+        this.allAnimals = animals;
 	}
-	
+
 	public String toString() {
 		return trialNum + "\t" + participantNum + "\t" + treatment.toString() + "\t" +
 				numOfErrors + "\t" + timeTaken;
-	}
-	
-	private void determineSearchImage(AnimalController animalController) {
-		if (treatment.IsFrequentlyUsed())
-			searchAnimal = animalController.FrequentImage(10);
-		else
-			searchAnimal = animalController.InfrequentImage(10);
-	}
-	
-	private void determineAnimalImageList(AnimalController animalController) {
-		if (treatment.AppsInstalled() == 50)
-			allAnimals = animalController.AnimalImages50();
-		else
-			allAnimals = animalController.AnimalImages150();
 	}
 	
 	public int TrialNum() {
