@@ -6,14 +6,16 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class AppLaunch extends Activity {
+import experiment.Experiment;
 
+public class AppLaunch extends Activity {
+    public Experiment experiment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_app_launch);
-//        Fragment initFrag = new FittsFragment(getApplicationContext());
-        Fragment initFrag = new PreTrialFragment(getApplicationContext());
+        experiment = new Experiment(getApplicationContext());
+        Fragment initFrag = new PreTrialFragment(getApplicationContext(), experiment.currentTrial());
         if (savedInstanceState == null) {
             getFragmentManager().beginTransaction()
                     .add(R.id.container, initFrag)

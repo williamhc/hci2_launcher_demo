@@ -6,8 +6,8 @@ public class Trial {
 	private Treatment treatment;
 	private int numOfErrors;
 	private double timeTaken;
-	private Animal searchAnimal;
-    private Animal[] allAnimals;
+	public Animal searchAnimal;
+    public Animal[] allAnimals;
 
 	public Trial(int trialNum, int participantNum, Treatment treatment, Animal animal, Animal[] animals) {
 		this.trialNum = trialNum;

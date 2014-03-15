@@ -14,19 +14,19 @@ public class Experiment {
 	private int participantNumber = 1;
 	private AnimalController animalController;
     private Animal[] frequent150, frequent50, infrequent150, infrequent50;
+    private Context context;
 
-
-    public Experiment() {
-		animalController = new AnimalController();
+    public Experiment(Context context) {
+        this.context = context;
+		animalController = new AnimalController(this.context);
 		this.listOfTrials = new Trial[NUM_TRIALS];
 
-        initialzeAnimals();
-
+        initializeAnimals();
 		initializeTrials();
 		currentTrialIndex = 0;
 	}
 
-    private void initialzeAnimals() {
+    private void initializeAnimals() {
         frequent150 = animalController.getFrequentAnimals(150, TRIALS_PER_TREATMENT);
         infrequent150 = animalController.getInfrequentAnimals(150, TRIALS_PER_TREATMENT);
         frequent50 = animalController.getFrequentAnimals(50, TRIALS_PER_TREATMENT);
@@ -79,7 +79,7 @@ public class Experiment {
         return t;
 	}
 	
-	public void WriteDataToDisk(Context ctx) {
+	public void WriteDataToDisk() {
 		String fileName = "Participant_" + participantNumber + "_Data";
 		String buffer = "Trial\tPart#\tTech\tApps\tFreq\tErrors\tTime\n";
 		
@@ -88,7 +88,7 @@ public class Experiment {
 		}
 		
 		try {
-			FileOutputStream fos = ctx.openFileOutput(fileName, Context.MODE_PRIVATE);
+			FileOutputStream fos = context.openFileOutput(fileName, Context.MODE_PRIVATE);
 			fos.write(buffer.getBytes());
 			fos.close();
 		} 

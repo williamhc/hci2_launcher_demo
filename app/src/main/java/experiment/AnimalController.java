@@ -1,25 +1,35 @@
 package experiment;
 
+import android.content.Context;
+import android.content.res.AssetManager;
 import android.graphics.BitmapFactory;
 
 import java.io.File;
+import java.io.IOException;
 
 
 public class AnimalController {
 	private Animal[] animalImages150;
 	private Animal[] animalImages50;
-	private final File animalDirectory = new File("./assets/animals/");
+    private Context context;
 	
-	public AnimalController() {
+	public AnimalController(Context context) {
 		animalImages150 = new Animal[150];
 		animalImages50 = new Animal[50];
-		readImages();
-	}
+        this.context = context;
+        try {
+            readImages();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 	
-	private void readImages() {
-		File[] file = animalDirectory.listFiles();
-		for (int index = 0; index < file.length; index++) {
-            String fname = file[index].getPath();
+	private void readImages() throws IOException {
+        AssetManager assetManager = context.getAssets();
+        String[] animals = assetManager.list("animals");
+
+        for (int index = 0; index < animals.length; index++) {
+            String fname = animals[index];
             Animal animal = new Animal(BitmapFactory.decodeFile(fname), fname.substring(0, fname.length() - 4));
 			animalImages150[index] = animal;
 		}
