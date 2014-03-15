@@ -23,8 +23,6 @@ public class PreTrialFragment extends Fragment {
         this.trial = trial;
     }
 
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.prep_screen, container, false);

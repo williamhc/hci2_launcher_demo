@@ -22,6 +22,8 @@ public class AppLaunch extends Activity {
                     .add(R.id.container, initFrag)
                     .commit();
         }
+
+
     }
 
     @Override

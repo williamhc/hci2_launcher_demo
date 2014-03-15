@@ -28,7 +28,6 @@ public class AnimalController {
         AssetManager am = context.getAssets();
         String[] animalNames = am.list("animals");
 
-
         R.drawable drawableResources = new R.drawable();
         Class<R.drawable> c = R.drawable.class;
         Field[] fields = c.getDeclaredFields();

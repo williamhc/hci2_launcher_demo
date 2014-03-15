@@ -6,6 +6,7 @@ public class Trial {
 	private Treatment treatment;
 	private int numOfErrors;
 	private double timeTaken;
+    private int numOfActions;
 	public Animal searchAnimal;
     public Animal[] allAnimals;
 
