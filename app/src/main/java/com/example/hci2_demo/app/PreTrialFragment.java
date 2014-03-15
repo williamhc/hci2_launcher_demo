@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.ImageView;
 
 import experiment.Trial;
 
@@ -14,8 +15,9 @@ import experiment.Trial;
  * A fragment that shows the user the app they will launch next
  */
 public class PreTrialFragment extends Fragment {
+    private Trial trial;
     public Context context;
-    public Trial trial;
+
     public PreTrialFragment(Context context, Trial trial) {
         this.context = context;
         this.trial = trial;
@@ -26,8 +28,12 @@ public class PreTrialFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.prep_screen, container, false);
+
         TextView animalName = (TextView)rootView.findViewById(R.id.textView);
         animalName.setText(trial.searchAnimal.name);
+
+        ImageView iv = (ImageView)rootView.findViewById(R.id.imageView);
+        iv.setImageDrawable(this.trial.searchAnimal.img);
         return rootView;
     }
 }

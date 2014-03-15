@@ -2,21 +2,21 @@ package experiment;
 
 import android.content.Context;
 import android.content.res.AssetManager;
-import android.graphics.BitmapFactory;
-
-import java.io.File;
+import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
+import com.example.hci2_demo.app.R;
 import java.io.IOException;
+import java.lang.reflect.Field;
 
 
 public class AnimalController {
-	private Animal[] animalImages150;
-	private Animal[] animalImages50;
     private Context context;
-	
+    private Animal[] animalImages150;
+	private Animal[] animalImages50;
 	public AnimalController(Context context) {
+        this.context = context;
 		animalImages150 = new Animal[150];
 		animalImages50 = new Animal[50];
-        this.context = context;
         try {
             readImages();
         } catch (IOException e) {
@@ -25,22 +25,33 @@ public class AnimalController {
     }
 	
 	private void readImages() throws IOException {
-        AssetManager assetManager = context.getAssets();
-        String[] animals = assetManager.list("animals");
+        AssetManager am = context.getAssets();
+        String[] animalNames = am.list("animals");
 
-        for (int index = 0; index < animals.length; index++) {
-            String fname = animals[index];
-            Animal animal = new Animal(BitmapFactory.decodeFile(fname), fname.substring(0, fname.length() - 4));
-			animalImages150[index] = animal;
-		}
-		
+
+        R.drawable drawableResources = new R.drawable();
+        Class<R.drawable> c = R.drawable.class;
+        Field[] fields = c.getDeclaredFields();
+        Resources res = context.getResources();
+        int resourceId;
+
+        for (int i = 0, max = fields.length - 1; i < max; i++) {
+            try {
+                resourceId = fields[i].getInt(drawableResources);
+                Drawable drawable = res.getDrawable(resourceId);
+                this.animalImages150[i] = new Animal(drawable, animalNames[i]);
+            } catch (Exception e) {
+                continue;
+            }
+        }
+
 		shuffleArray(animalImages150, 0, 50);
 		shuffleArray(animalImages150, 50, 100);
-		shuffleArray(animalImages150, 100, 150);
+		shuffleArray(animalImages150, 100, 148);
 		shuffleArray(animalImages150, 34, 90);
-		shuffleArray(animalImages150, 80, 150);
+		shuffleArray(animalImages150, 80, 148);
 		shuffleArray(animalImages150, 2, 124);
-		shuffleArray(animalImages150, 0, 150);
+		shuffleArray(animalImages150, 0, 148);
 		storeEveryXImageFrom150Images(3, animalImages50);
 	}
 	

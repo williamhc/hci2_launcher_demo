@@ -17,8 +17,7 @@ public class Experiment {
     private Context context;
 
     public Experiment(Context context) {
-        this.context = context;
-		animalController = new AnimalController(this.context);
+		animalController = new AnimalController(context);
 		this.listOfTrials = new Trial[NUM_TRIALS];
 
         initializeAnimals();

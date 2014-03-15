@@ -2,20 +2,21 @@ package com.example.hci2_demo.app;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import experiment.Experiment;
-
 public class AppLaunch extends Activity {
     public Experiment experiment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_app_launch);
-        experiment = new Experiment(getApplicationContext());
-        Fragment initFrag = new PreTrialFragment(getApplicationContext(), experiment.currentTrial());
+        Context c = getApplicationContext();
+        Experiment experiment = new Experiment(c);
+        Fragment initFrag = new PreTrialFragment(c, experiment.nextTrial());
         if (savedInstanceState == null) {
             getFragmentManager().beginTransaction()
                     .add(R.id.container, initFrag)
@@ -25,7 +26,6 @@ public class AppLaunch extends Activity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.app_launch, menu);
         return true;
