@@ -1,10 +1,10 @@
 package experiment;
 
+import android.content.Context;
+
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.LinkedList;
-
-import android.content.Context;
 
 public class Experiment {
 	private final int NUM_TRIALS = 60;
@@ -12,10 +12,10 @@ public class Experiment {
 	private Trial listOfTrials[];
 	private int currentTrialIndex = 0;
 	private int participantNumber = 1;
-	private ImageController imageController;
+	private AnimalController animalController;
 	
 	public Experiment() {
-		imageController = new ImageController();
+		animalController = new AnimalController();
 		this.listOfTrials = new Trial[NUM_TRIALS];
 		initializeTrials();
 		currentTrialIndex = 0;
@@ -52,7 +52,7 @@ public class Experiment {
 	private void addTrials(Treatment treatment, int trials) {
 		for (int index = 0; index < trials; index++) {
 			int trialNum = currentTrialIndex + 1;
-			listOfTrials[currentTrialIndex] = new Trial(trialNum, participantNumber, treatment, imageController);
+			listOfTrials[currentTrialIndex] = new Trial(trialNum, participantNumber, treatment, animalController);
 			currentTrialIndex++;
 		}
 	}
@@ -62,8 +62,9 @@ public class Experiment {
 	}
 	
 	public Trial nextTrial() {
-		currentTrialIndex++;
-		return listOfTrials[currentTrialIndex];
+		Trial t = listOfTrials[currentTrialIndex];
+        this.currentTrialIndex += 1;
+        return t;
 	}
 	
 	public void WriteDataToDisk(Context ctx) {
