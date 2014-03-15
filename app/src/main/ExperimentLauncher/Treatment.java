@@ -17,4 +17,8 @@ public class Treatment {
 	public int AppsInstalled() {
 		return appsInstalled;
 	}
+	
+	public boolean IsFrequentlyUsed() {
+		return isFrequentlyUsed;
+	}
 }
