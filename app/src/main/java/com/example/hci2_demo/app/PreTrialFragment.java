@@ -10,9 +10,9 @@ import android.view.ViewGroup;
 /**
  * A fragment that shows the user the app they will launch next
  */
-public class PrepFrag extends Fragment {
+public class PreTrialFragment extends Fragment {
     public Context context;
-    public PrepFrag(Context context) {
+    public PreTrialFragment(Context context) {
         this.context = context;
     }
 

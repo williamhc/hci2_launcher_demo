@@ -13,7 +13,7 @@ public class AppLaunch extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_app_launch);
 //        Fragment initFrag = new FittsFragment(getApplicationContext());
-        Fragment initFrag = new PrepFrag(getApplicationContext());
+        Fragment initFrag = new PreTrialFragment(getApplicationContext());
         if (savedInstanceState == null) {
             getFragmentManager().beginTransaction()
                     .add(R.id.container, initFrag)

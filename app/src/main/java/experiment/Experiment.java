@@ -34,6 +34,7 @@ public class Experiment {
     }
 
     private void initializeTrials() {
+        // TODO: this order should be dependent on the participant number!!!
 		addTrialsForTechnique("Fitts' Wheel", TRIALS_PER_TREATMENT);
 		addTrialsForTechnique("GPS Launcher", TRIALS_PER_TREATMENT);
 		addTrialsForTechnique("Keyboard Search", TRIALS_PER_TREATMENT);
