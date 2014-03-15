@@ -1,14 +1,15 @@
 import java.util.LinkedList;
 
-
 public class Experiment {
 	private final int NUM_TRIALS = 60;
 	private final int TRIALS_PER_TREATMENT = 5;
 	private Trial listOfTrials[];
 	private int currentTrialIndex = 0;
 	private int participantNumber = 1;
+	private ImageController imageController;
 	
 	public Experiment() {
+		imageController = new ImageController();
 		this.listOfTrials = new Trial[NUM_TRIALS];
 		initializeTrials();
 		currentTrialIndex = 0;
@@ -45,16 +46,16 @@ public class Experiment {
 	private void addTrials(Treatment treatment, int trials) {
 		for (int index = 0; index < trials; index++) {
 			int trialNum = currentTrialIndex + 1;
-			listOfTrials[currentTrialIndex] = new Trial(trialNum, participantNumber, treatment);
+			listOfTrials[currentTrialIndex] = new Trial(trialNum, participantNumber, treatment, imageController);
 			currentTrialIndex++;
 		}
 	}
 	
-	public Trial GetCurrentTrial() {
+	public Trial currentTrial() {
 		return listOfTrials[currentTrialIndex];
 	}
 	
-	public Trial GetNextTrial() {
+	public Trial nextTrial() {
 		currentTrialIndex++;
 		return listOfTrials[currentTrialIndex];
 	}
