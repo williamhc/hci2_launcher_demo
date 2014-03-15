@@ -1,6 +1,7 @@
 package com.example.hci2_demo.app;
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -11,13 +12,14 @@ public class AppLaunch extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_app_launch);
+//        Fragment initFrag = new FittsFragment(getApplicationContext());
+        Fragment initFrag = new PrepFrag(getApplicationContext());
         if (savedInstanceState == null) {
             getFragmentManager().beginTransaction()
-                    .add(R.id.container, new FittsFragment(getApplicationContext()))
+                    .add(R.id.container, initFrag)
                     .commit();
         }
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
