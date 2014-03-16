@@ -25,9 +25,6 @@ public class AnimalController {
     }
 	
 	private void readImages() throws IOException {
-        AssetManager am = context.getAssets();
-        String[] animalNames = am.list("animals");
-
         R.drawable drawableResources = new R.drawable();
         Class<R.drawable> c = R.drawable.class;
         Field[] fields = c.getDeclaredFields();
@@ -36,9 +33,10 @@ public class AnimalController {
 
         for (int i = 0, max = fields.length - 1; i < max; i++) {
             try {
+                String animalName = fields[i].getName();
                 resourceId = fields[i].getInt(drawableResources);
                 Drawable drawable = res.getDrawable(resourceId);
-                this.animalImages150[i] = new Animal(drawable, animalNames[i]);
+                this.animalImages150[i] = new Animal(drawable, animalName);
             } catch (Exception e) {
                 continue;
             }
