@@ -3,19 +3,21 @@ package experiment;
 public class Trial {
 	private int trialNum;
 	private int participantNum;
-	private Treatment treatment;
+	public Treatment treatment;
 	private int numOfErrors;
 	private double timeTaken;
     private int numOfActions;
 	public Animal searchAnimal;
+    public Animal[] fiveAnimals;
     public Animal[] allAnimals;
 
-	public Trial(int trialNum, int participantNum, Treatment treatment, Animal animal, Animal[] animals) {
+	public Trial(int trialNum, int participantNum, Treatment treatment, Animal animal, Animal[] fiveAnimals, Animal[] allAnimals) {
 		this.trialNum = trialNum;
 		this.participantNum = participantNum;
 		this.treatment = treatment;
         this.searchAnimal = animal;
-        this.allAnimals = animals;
+        this.fiveAnimals = fiveAnimals;
+        this.allAnimals = allAnimals;
 	}
 
 	public String toString() {
@@ -32,7 +34,7 @@ public class Trial {
 	}
 	
 	public Animal[] AnimalImages() {
-		return allAnimals;
+		return fiveAnimals;
 	}
 	
 	public int NumOfErrors() {
