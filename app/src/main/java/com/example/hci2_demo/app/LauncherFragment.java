@@ -25,6 +25,7 @@ public abstract class LauncherFragment extends Fragment {
     public abstract int getLayoutID();
 
     public LauncherFragment(AppLaunch appLaunch, Context context) {
+        this.icons = new ArrayList<ImageButton>();
         this.context = context;
         this.appLaunch = appLaunch;
         this.trial = this.appLaunch.experiment.currentTrial();

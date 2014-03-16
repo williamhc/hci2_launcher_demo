@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 
 /**
  * A fragment for Fitts' wheel.
@@ -21,8 +22,12 @@ public class FittsFragment extends LauncherFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return super.onCreateView(inflater, container, savedInstanceState);
+        ViewGroup rootView = (ViewGroup) super.onCreateView(inflater, container, savedInstanceState);
 
-//        final StableArrayAdapter = new StableArrayAdapter(this.context, R.id.listView, this.icons);
+        final AppButtonArrayAdapter adapter = new AppButtonArrayAdapter(this.context, this.icons);
+        ListView lv = (ListView) rootView.findViewById(R.id.listView);
+        lv.setAdapter(adapter);
+
+        return rootView;
     }
 }
