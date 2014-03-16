@@ -68,7 +68,7 @@
             android:layout_height="90dp"
             android:id="@+id/imageButton13"
             android:layout_marginLeft="0dp"
-            android:src="@drawable/chinchilla" />
+            android:src="@drawable/dragonfly" />
 
         <ImageButton
             android:layout_width="90dp"
