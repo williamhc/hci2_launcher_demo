@@ -94,7 +94,7 @@ public class Experiment {
 	private void addTrials(Treatment treatment, Animal[] animals, Animal[] allAnimals) {
 		for (int index = 0; index < animals.length; index++) {
             currentTrialIndex++;
-			listOfTrials[currentTrialIndex] = new Trial(currentTrialIndex + 1, participantNumber, treatment, animals[index], animals, allAnimals);
+			listOfTrials[currentTrialIndex] = new Trial(currentTrialIndex + 1, participantNumber, treatment, animals[index], allAnimals);
 		}
 	}
 	

@@ -10,13 +10,12 @@
         android:text="Start"
         android:id="@+id/button"
         android:layout_gravity="center_horizontal"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="86dp"
         android:height="100dp"
         android:textSize="40dp"
         android:textColor="#7fefe4"
-        android:width="200dp" />
+        android:width="200dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
 
     <ImageView
         android:layout_width="wrap_content"
@@ -38,4 +37,19 @@
         android:textSize="30dp"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Medium Text"
+        android:id="@+id/trialInfo"
+        android:layout_below="@+id/textView"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="50dp"
+        android:textSize="20dp"
+        android:textAlignment="viewStart"
+        android:singleLine="false"
+        android:paddingLeft="50dp"
+        android:paddingRight="50dp" />
 </RelativeLayout>

@@ -1,5 +1,10 @@
 package experiment;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+
 public class Trial {
 	private int trialNum;
 	private int participantNum;
@@ -8,16 +13,26 @@ public class Trial {
 	public double timeTaken;
     private int numOfActions;
 	public Animal searchAnimal;
-    public Animal[] fiveAnimals;
     public Animal[] allAnimals;
 
-	public Trial(int trialNum, int participantNum, Treatment treatment, Animal animal, Animal[] fiveAnimals, Animal[] allAnimals) {
+	public Trial(int trialNum, int participantNum, Treatment treatment, Animal animal, Animal[] allAnimals) {
 		this.trialNum = trialNum;
 		this.participantNum = participantNum;
 		this.treatment = treatment;
         this.searchAnimal = animal;
-        this.fiveAnimals = fiveAnimals;
-        this.allAnimals = allAnimals;
+        if (this.treatment.Technique().equals("Fitts' Wheel")) {
+            List<Animal> animalList = Arrays.asList(allAnimals);
+            Collections.sort(animalList, new Comparator<Animal>() {
+                @Override
+                public int compare(Animal a1, Animal a2) {
+                    return a1.name.compareTo(a2.name);
+                }
+            });
+            this.allAnimals = (Animal[]) animalList.toArray();
+        }
+        else {
+            this.allAnimals = allAnimals;
+        }
 	}
 
 	public String toString() {
@@ -32,11 +47,7 @@ public class Trial {
 	public Animal SearchImage() {
 		return searchAnimal;
 	}
-	
-	public Animal[] AnimalImages() {
-		return fiveAnimals;
-	}
-	
+
 	public int NumOfErrors() {
 		return numOfErrors;
 	}
