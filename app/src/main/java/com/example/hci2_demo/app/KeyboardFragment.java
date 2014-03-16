@@ -6,9 +6,9 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
 import android.widget.ListView;
+
+import java.util.ArrayList;
 
 import experiment.Trial;
 
@@ -26,8 +26,9 @@ public class KeyboardFragment extends LauncherFragment {
         super.onCreateView(inflater, container, savedInstanceState);
         ViewGroup rootView = (ViewGroup) inflater.inflate(this.getLayoutID(), container, false);
 
-        final AppButtonArrayAdapter adapter = new AppButtonArrayAdapter(this.context, this.icons);
+        final AppButtonArrayAdapter adapter = new AppButtonArrayAdapter(this.context, new ArrayList<View>(icons));
 //        adapter.notifyDatasetChanged();
+        
         ListView lv = (ListView) rootView.findViewById(R.id.listView);
         lv.setAdapter(adapter);
 
