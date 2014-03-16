@@ -27,6 +27,7 @@ public class KeyboardFragment extends LauncherFragment {
         ViewGroup rootView = (ViewGroup) inflater.inflate(this.getLayoutID(), container, false);
 
         final AppButtonArrayAdapter adapter = new AppButtonArrayAdapter(this.context, this.icons);
+//        adapter.notifyDatasetChanged();
         ListView lv = (ListView) rootView.findViewById(R.id.listView);
         lv.setAdapter(adapter);
 

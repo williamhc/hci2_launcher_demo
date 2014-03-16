@@ -9,7 +9,9 @@
         android:layout_width="match_parent"
         android:layout_height="293dp"
         android:id="@+id/listView"
-        android:layout_weight="0.98" />
+        android:layout_weight="0.98"
+        android:fastScrollAlwaysVisible="true"
+        android:fastScrollEnabled="true" />
 
     <EditText
         android:layout_width="match_parent"
