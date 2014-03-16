@@ -19,7 +19,7 @@ public abstract class LauncherFragment extends Fragment {
                 "Anteater", "Antelope", "Ape", "Armadillo"};
     }
 
-    public void appWasTapped(View view){
+    public void appWasTapped(View view) {
         System.out.println("OHAI");
     }
 

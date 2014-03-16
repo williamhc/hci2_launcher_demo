@@ -10,20 +10,19 @@ import android.view.MenuItem;
 import experiment.Experiment;
 public class AppLaunch extends Activity {
     public Experiment experiment;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_app_launch);
         Context c = getApplicationContext();
         Experiment experiment = new Experiment(c);
-        Fragment initFrag = new PreTrialFragment(c, experiment.nextTrial());
+        Fragment initFrag = new PreTrialFragment(experiment, c);
         if (savedInstanceState == null) {
             getFragmentManager().beginTransaction()
                     .add(R.id.container, initFrag)
                     .commit();
         }
-
-
     }
 
     @Override
