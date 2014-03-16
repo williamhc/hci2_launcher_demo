@@ -4,8 +4,8 @@ public class Trial {
 	private int trialNum;
 	private int participantNum;
 	public Treatment treatment;
-	private int numOfErrors;
-	private double timeTaken;
+	public int numOfErrors;
+	public double timeTaken;
     private int numOfActions;
 	public Animal searchAnimal;
     public Animal[] fiveAnimals;

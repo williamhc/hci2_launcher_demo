@@ -6,49 +6,71 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.ImageButton;
+
+import java.util.ArrayList;
+import java.util.Calendar;
+
+import experiment.Animal;
+import experiment.Trial;
 
 public abstract class LauncherFragment extends Fragment {
-    public String[] animals;
+    private final AppLaunch appLaunch;
     public Context context;
+    private Trial trial;
+    private int numErrors;
+    private Calendar startTime;
+    ArrayList<ImageButton> icons;
+
     public abstract int getLayoutID();
 
-    public LauncherFragment(Context context) {
+    public LauncherFragment(AppLaunch appLaunch, Context context) {
         this.context = context;
-        animals = new String[]{"Aardvark", "Albatross", "Alligator", "Alpaca", "Ant",
-                "Anteater", "Antelope", "Ape", "Armadillo"};
+        this.appLaunch = appLaunch;
+        this.trial = this.appLaunch.experiment.currentTrial();
+        this.numErrors = 0;
+        this.startTime = Calendar.getInstance();
     }
 
-    public void appWasTapped(View view) {
-        System.out.println("OHAI");
+    public void appWasTapped(Animal animal) {
+        if (animal == this.trial.searchAnimal){
+            Calendar now = Calendar.getInstance();
+            trial.timeTaken = now.getTimeInMillis() - this.startTime.getTimeInMillis();
+            this.appLaunch.startNextTrial();
+        } else {
+            this.trial.numOfErrors += 1;
+        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         ViewGroup rootView = (ViewGroup) inflater.inflate(this.getLayoutID(), container, false);
-        final Fragment f;
-        f = this;
-        for (int i = 0; i < animals.length; i++) {
-            Button animal_string;
+
+//        GridView animalGrid = (GridView) rootView.findViewById(R.id.gr);
+
+        for (int i = 0; i < this.trial.allAnimals.length; i++) {
+            ImageButton animalButton;
             View.OnClickListener l;
 
-            animal_string = new Button(context);
-            animal_string.setText(animals[i]);
-            animal_string.setWidth(250);
-            animal_string.setHeight(250);
-            animal_string.setPadding(30, 30, 30, 30);
-
+            animalButton = new ImageButton(context);
+            animalButton.setImageDrawable(this.trial.allAnimals[i].img);
+            animalButton.setPadding(30, 30, 30, 30);
+            final LauncherFragment f = this;
+            final int finalI = i;
             l = new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    ((FittsFragment)f).appWasTapped(view);
+                    Animal animal = f.trial.allAnimals[finalI];
+                    ((LauncherFragment)f).appWasTapped(animal);
                 }
             };
-            animal_string.setOnClickListener(l);
+            animalButton.setOnClickListener(l);
 
-            rootView.addView(animal_string);
+            this.icons.add(animalButton);
         }
+
         return rootView;
     }
 }

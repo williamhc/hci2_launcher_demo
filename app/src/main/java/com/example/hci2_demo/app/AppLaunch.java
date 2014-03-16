@@ -1,8 +1,6 @@
 package com.example.hci2_demo.app;
 
 import android.app.Activity;
-import android.app.Fragment;
-import android.content.Context;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -15,14 +13,8 @@ public class AppLaunch extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_app_launch);
-        Context c = getApplicationContext();
-        Experiment experiment = new Experiment(c);
-        Fragment initFrag = new PreTrialFragment(experiment, c);
-        if (savedInstanceState == null) {
-            getFragmentManager().beginTransaction()
-                    .add(R.id.container, initFrag)
-                    .commit();
-        }
+        this.experiment = new Experiment(getApplicationContext());
+        this.startNextTrial();
     }
 
     @Override
@@ -42,5 +34,12 @@ public class AppLaunch extends Activity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void startNextTrial() {
+        this.experiment.nextTrial();
+        getFragmentManager().beginTransaction()
+            .replace(R.id.container, new PreTrialFragment(this, getApplicationContext()))
+            .commit();
     }
 }

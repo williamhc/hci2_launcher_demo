@@ -8,10 +8,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TextView;
 import android.widget.ImageView;
+import android.widget.TextView;
 
-import experiment.Experiment;
 import experiment.Trial;
 
 /**
@@ -19,13 +18,13 @@ import experiment.Trial;
  */
 public class PreTrialFragment extends Fragment {
     private Trial trial;
-    private Experiment experiment;
+    private AppLaunch appLaunch;
     public Context context;
 
-    public PreTrialFragment(Experiment experiment, Context context) {
-        this.experiment = experiment;
+    public PreTrialFragment(AppLaunch appLaunch, Context context) {
+        this.appLaunch = appLaunch;
         this.context = context;
-        this.trial = experiment.nextTrial();
+        this.trial = appLaunch.experiment.currentTrial();
     }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -48,13 +47,13 @@ public class PreTrialFragment extends Fragment {
             public void onClick(View arg0) {
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
                 if (trial.treatment.Technique().equals("Fitts' Wheel")) {
-                    ft.replace(R.id.container, new FittsFragment(context, trial));
+                    ft.replace(R.id.container, new FittsFragment(appLaunch, context));
                 }
 //                else if (trial.treatment.Technique().equals("GPS Launcher")) {
 //                    ft.replace(R.id.container, new PreTrialFragment(experiment, context));
 //                }
                 else {
-                    ft.replace(R.id.container, new PreTrialFragment(experiment, context));
+                    ft.replace(R.id.container, new PreTrialFragment(appLaunch, context));
                 }
 
 //                ft.replace(R.id.container, new PreTrialFragment(experiment, context));

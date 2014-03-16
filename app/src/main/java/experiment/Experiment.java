@@ -102,8 +102,13 @@ public class Experiment {
         this.currentTrialIndex += 1;
 		return listOfTrials[currentTrialIndex];
 	}
-	
-	public void WriteDataToDisk() {
+
+    public Trial currentTrial() {
+        return this.listOfTrials[this.currentTrialIndex];
+    }
+
+
+    public void WriteDataToDisk() {
 		String fileName = "Participant_" + participantNumber + "_Data";
 		String buffer = "Trial\tPart#\tTech\tApps\tFreq\tErrors\tTime\n";
 		
@@ -120,4 +125,5 @@ public class Experiment {
 			e.printStackTrace();
 		}
 	}
+
 }
