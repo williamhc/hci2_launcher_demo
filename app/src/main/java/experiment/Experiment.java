@@ -19,7 +19,7 @@ public class Experiment {
     public Experiment(Context context) {
 		animalController = new AnimalController(context);
 		this.listOfTrials = new Trial[NUM_TRIALS];
-
+        this.participantNumber = 1;
         initializeAnimals();
 		initializeTrials();
 		currentTrialIndex = -1;
@@ -33,10 +33,40 @@ public class Experiment {
     }
 
     private void initializeTrials() {
-        // TODO: this order should be dependent on the participant number!!!
-		addTrialsForTechnique("Fitts' Wheel", TRIALS_PER_TREATMENT);
-		addTrialsForTechnique("GPS Launcher", TRIALS_PER_TREATMENT);
-		addTrialsForTechnique("Keyboard Search", TRIALS_PER_TREATMENT);
+        int treatmentOrder = participantNumber % 6;
+
+        switch(treatmentOrder) {
+            case 0:
+                addTrialsForTechnique("Fitts' Wheel", TRIALS_PER_TREATMENT);
+                addTrialsForTechnique("GPS Launcher", TRIALS_PER_TREATMENT);
+                addTrialsForTechnique("Keyboard Search", TRIALS_PER_TREATMENT);
+                break;
+            case 1:
+                addTrialsForTechnique("Fitts' Wheel", TRIALS_PER_TREATMENT);
+                addTrialsForTechnique("Keyboard Search", TRIALS_PER_TREATMENT);
+                addTrialsForTechnique("GPS Launcher", TRIALS_PER_TREATMENT);
+                break;
+            case 2:
+                addTrialsForTechnique("GPS Launcher", TRIALS_PER_TREATMENT);
+                addTrialsForTechnique("Fitts' Wheel", TRIALS_PER_TREATMENT);
+                addTrialsForTechnique("Keyboard Search", TRIALS_PER_TREATMENT);
+                break;
+            case 3:
+                addTrialsForTechnique("GPS Launcher", TRIALS_PER_TREATMENT);
+                addTrialsForTechnique("Keyboard Search", TRIALS_PER_TREATMENT);
+                addTrialsForTechnique("Fitts' Wheel", TRIALS_PER_TREATMENT);
+                break;
+            case 4:
+                addTrialsForTechnique("Keyboard Search", TRIALS_PER_TREATMENT);
+                addTrialsForTechnique("Fitts' Wheel", TRIALS_PER_TREATMENT);
+                addTrialsForTechnique("GPS Launcher", TRIALS_PER_TREATMENT);
+                break;
+            case 5:
+                addTrialsForTechnique("Keyboard Search", TRIALS_PER_TREATMENT);
+                addTrialsForTechnique("GPS Launcher", TRIALS_PER_TREATMENT);
+                addTrialsForTechnique("Fitts' Wheel", TRIALS_PER_TREATMENT);
+                break;
+        }
 	}
 	
 	private void addTrialsForTechnique(String technique, int trials) {
@@ -49,22 +79,22 @@ public class Experiment {
 		while (!treatmentsRemaining.isEmpty()) {
 			int randomNumber = (int)(Math.random() * 4) + 1;
 			if (randomNumber == 1 && treatmentsRemaining.contains(Integer.valueOf(1)))
-				addTrials(new Treatment(technique, 150, false), this.infrequent150);
+				addTrials(new Treatment(technique, 150, false), this.infrequent150, animalController.AnimalImages150());
 			else if (randomNumber == 2 && treatmentsRemaining.contains(Integer.valueOf(2)))
-				addTrials(new Treatment(technique, 50, false), this.infrequent50);
+				addTrials(new Treatment(technique, 50, false), this.infrequent50, animalController.AnimalImages50());
 			else if (randomNumber == 3 && treatmentsRemaining.contains(Integer.valueOf(3)))
-				addTrials(new Treatment(technique, 150, true), this.frequent150);
+				addTrials(new Treatment(technique, 150, true), this.frequent150, animalController.AnimalImages150());
 			else if (randomNumber == 4 && treatmentsRemaining.contains(Integer.valueOf(4)))
-				addTrials(new Treatment(technique, 50, true), this.frequent50);
+				addTrials(new Treatment(technique, 50, true), this.frequent50, animalController.AnimalImages50());
 			
 			treatmentsRemaining.remove(Integer.valueOf(randomNumber));
 		}
 	}
 	
-	private void addTrials(Treatment treatment, Animal[] animals) {
+	private void addTrials(Treatment treatment, Animal[] animals, Animal[] allAnimals) {
 		for (int index = 0; index < animals.length; index++) {
             currentTrialIndex++;
-			listOfTrials[currentTrialIndex] = new Trial(currentTrialIndex + 1, participantNumber, treatment, animals[index], animals);
+			listOfTrials[currentTrialIndex] = new Trial(currentTrialIndex + 1, participantNumber, treatment, animals[index], animals, allAnimals);
 		}
 	}
 	

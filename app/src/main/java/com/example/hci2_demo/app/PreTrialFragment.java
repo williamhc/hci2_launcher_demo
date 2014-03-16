@@ -47,10 +47,17 @@ public class PreTrialFragment extends Fragment {
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View arg0) {
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
-                // Replace the container with the new fragment
-                ft.replace(R.id.container, new PreTrialFragment(experiment, context));
-                // or ft.add(R.id.your_placeholder, new FooFragment());
-                // Execute the changes specified
+                if (trial.treatment.Technique().equals("Fitts' Wheel")) {
+                    ft.replace(R.id.container, new FittsFragment(context, trial));
+                }
+//                else if (trial.treatment.Technique().equals("GPS Launcher")) {
+//                    ft.replace(R.id.container, new PreTrialFragment(experiment, context));
+//                }
+                else {
+                    ft.replace(R.id.container, new PreTrialFragment(experiment, context));
+                }
+
+//                ft.replace(R.id.container, new PreTrialFragment(experiment, context));
                 ft.commit();
             }
         });
