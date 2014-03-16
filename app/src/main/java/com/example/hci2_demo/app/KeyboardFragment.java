@@ -13,31 +13,30 @@ import experiment.Trial;
 
 public class KeyboardFragment extends LauncherFragment {
     private Trial trial;
-    private Activity activity;
+    private Activity appLaunch;
 
-    public KeyboardFragment(Context context, Trial trial) {
-        super(context);
-        this.activity = this.getActivity();
-        this.trial = trial;
+    public KeyboardFragment(AppLaunch appLaunch, Context context) {
+        super(appLaunch, context);
+        this.appLaunch = appLaunch;
     }
 
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        super.onCreateView(inflater, container, savedInstanceState);
-        ViewGroup rootView = (ViewGroup) inflater.inflate(this.getLayoutID(), container, false);
-        Button keyboardBtn = (Button) rootView.findViewById(R.id.keyboard);
-
-        View.OnClickListener keyboardListener = new View.OnClickListener() {
-            public void onClick(View view) {
-                InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
-//                imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,0);
-            }
-        };
-
-        keyboardBtn.setOnClickListener(keyboardListener);
-
-        return rootView;
-    }
+//    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+//                             Bundle savedInstanceState) {
+//        super.onCreateView(inflater, container, savedInstanceState);
+//        ViewGroup rootView = (ViewGroup) inflater.inflate(this.getLayoutID(), container, false);
+////        Button keyboardBtn = (Button) rootView.findViewById(R.id.keyboard);
+////
+////        View.OnClickListener keyboardListener = new View.OnClickListener() {
+////            public void onClick(View view) {
+////                InputMethodManager imm = (InputMethodManager) appLaunch.getSystemService(Context.INPUT_METHOD_SERVICE);
+////                imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,0);
+////            }
+////        };
+////
+////        keyboardBtn.setOnClickListener(keyboardListener);
+////
+//        return rootView;
+//    }
 
     public int getLayoutID() {
         return R.layout.keyboard_search;
