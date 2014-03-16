@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -20,12 +20,12 @@ public abstract class LauncherFragment extends Fragment {
     private Trial trial;
     private int numErrors;
     private Calendar startTime;
-    ArrayList<ImageButton> icons;
+    ArrayList<View> icons;
 
     public abstract int getLayoutID();
 
     public LauncherFragment(AppLaunch appLaunch, Context context) {
-        this.icons = new ArrayList<ImageButton>();
+        this.icons = new ArrayList<View>();
         this.context = context;
         this.appLaunch = appLaunch;
         this.trial = this.appLaunch.experiment.currentTrial();
@@ -52,11 +52,14 @@ public abstract class LauncherFragment extends Fragment {
 //        GridView animalGrid = (GridView) rootView.findViewById(R.id.gr);
 
         for (int i = 0; i < this.trial.allAnimals.length; i++) {
-            ImageButton animalButton;
+            TextView animalButton;
             View.OnClickListener l;
+            Animal animal = this.trial.allAnimals[i];
 
-            animalButton = new ImageButton(context);
-            animalButton.setImageDrawable(this.trial.allAnimals[i].img);
+            animalButton = new TextView(context);
+            animalButton.setText(animal.name.substring(0, 1).toUpperCase() + animal.name.substring(1));
+            animalButton.setCompoundDrawablesWithIntrinsicBounds(0, animal.img_id, 0, 0);
+
             animalButton.setPadding(30, 30, 30, 30);
             final LauncherFragment f = this;
             final int finalI = i;
