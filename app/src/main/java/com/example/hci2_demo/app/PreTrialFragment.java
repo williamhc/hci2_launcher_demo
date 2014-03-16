@@ -47,7 +47,7 @@ public class PreTrialFragment extends Fragment {
             public void onClick(View arg0) {
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
                 if (trial.treatment.Technique().equals("Fitts' Wheel")) {
-                    ft.replace(R.id.container, new FittsFragment(appLaunch, context));
+                    ft.replace(R.id.container, new KeyboardFragment(appLaunch, context));
                 }
 //                else if (trial.treatment.Technique().equals("GPS Launcher")) {
 //                    ft.replace(R.id.container, new PreTrialFragment(experiment, context));
