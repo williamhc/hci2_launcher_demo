@@ -16,12 +16,13 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import android.widget.ListView;
 
 import experiment.Trial;
 
 public class KeyboardFragment extends LauncherFragment {
     private Trial trial;
-    ArrayList<ImageButton> icons;
+    ArrayList<View> icons;
     private Activity appLaunch;
     private int count;
 
@@ -48,6 +49,13 @@ public class KeyboardFragment extends LauncherFragment {
             public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
                 //Go through the list of apps, find those that match
                 //just display one image at a time
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                //Do nothing
+                //Go through the list of apps, find those that match
+                //just display one image at a time
                 if(count < icons.size())
                 {
                     ImageButton button = (ImageButton) rootView.findViewById(R.id.imageButton);
@@ -59,11 +67,6 @@ public class KeyboardFragment extends LauncherFragment {
                     count = 0;
                 }
             }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-                //Do nothing
-            }
         });
         /*
         View.OnClickListener keyboardListener = new View.OnClickListener() {
@@ -73,8 +76,15 @@ public class KeyboardFragment extends LauncherFragment {
             }
         };
 
-        keyboardBtn.setOnClickListener(keyboardListener);*/
+        keyboardBtn.setOnClickListener(keyboardListener);
         //rootView.refreshDrawableState();
+        ViewGroup rootView = (ViewGroup) inflater.inflate(this.getLayoutID(), container, false);
+
+        final AppButtonArrayAdapter adapter = new AppButtonArrayAdapter(this.context, this.icons);
+        ListView lv = (ListView) rootView.findViewById(R.id.listView);
+        lv.setAdapter(adapter);
+
+>>>>>>> 4eea230773bb83ec3a7070fbac0f2cda94e56786*/
         return rootView;
     }
 

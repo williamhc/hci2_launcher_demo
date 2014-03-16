@@ -1,10 +1,11 @@
 package experiment;
 
 import android.content.Context;
-import android.content.res.AssetManager;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
+
 import com.example.hci2_demo.app.R;
+
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.LinkedList;
@@ -37,7 +38,7 @@ public class AnimalController {
                 String animalName = fields[i].getName();
                 resourceId = fields[i].getInt(drawableResources);
                 Drawable drawable = res.getDrawable(resourceId);
-                this.animalImages150[i] = new Animal(drawable, animalName);
+                this.animalImages150[i] = new Animal(drawable, resourceId, animalName);
             } catch (Exception e) {
                 continue;
             }
