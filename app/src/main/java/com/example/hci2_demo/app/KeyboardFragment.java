@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.ListView;
 
 import experiment.Trial;
 
@@ -20,23 +21,17 @@ public class KeyboardFragment extends LauncherFragment {
         this.appLaunch = appLaunch;
     }
 
-//    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-//                             Bundle savedInstanceState) {
-//        super.onCreateView(inflater, container, savedInstanceState);
-//        ViewGroup rootView = (ViewGroup) inflater.inflate(this.getLayoutID(), container, false);
-////        Button keyboardBtn = (Button) rootView.findViewById(R.id.keyboard);
-////
-////        View.OnClickListener keyboardListener = new View.OnClickListener() {
-////            public void onClick(View view) {
-////                InputMethodManager imm = (InputMethodManager) appLaunch.getSystemService(Context.INPUT_METHOD_SERVICE);
-////                imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,0);
-////            }
-////        };
-////
-////        keyboardBtn.setOnClickListener(keyboardListener);
-////
-//        return rootView;
-//    }
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        super.onCreateView(inflater, container, savedInstanceState);
+        ViewGroup rootView = (ViewGroup) inflater.inflate(this.getLayoutID(), container, false);
+
+        final AppButtonArrayAdapter adapter = new AppButtonArrayAdapter(this.context, this.icons);
+        ListView lv = (ListView) rootView.findViewById(R.id.listView);
+        lv.setAdapter(adapter);
+
+        return rootView;
+    }
 
     public int getLayoutID() {
         return R.layout.keyboard_search;

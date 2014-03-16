@@ -17,6 +17,7 @@
         android:id="@+id/editText"
         android:layout_gravity="center_horizontal"
         android:background="#FFFFFF"
-        android:hint="Enter text to filter list of apps" />
+        android:hint="Enter your app name"
+        android:textColor="#000000" />
 
 </LinearLayout>
