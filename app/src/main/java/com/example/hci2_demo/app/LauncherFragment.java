@@ -57,6 +57,7 @@ public abstract class LauncherFragment extends Fragment {
 
             animalButton = new ImageButton(context);
             animalButton.setImageDrawable(this.trial.allAnimals[i].img);
+            animalButton.setTag(this.trial.allAnimals[i].img);
             animalButton.setPadding(30, 30, 30, 30);
             final LauncherFragment f = this;
             final int finalI = i;
