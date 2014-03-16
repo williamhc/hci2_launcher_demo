@@ -10,7 +10,7 @@ public class Experiment {
 	private final int NUM_TRIALS = 60;
 	private final int TRIALS_PER_TREATMENT = 5;
 	private Trial listOfTrials[];
-	private int currentTrialIndex = 0;
+	private int currentTrialIndex = -1;
 	private int participantNumber = 1;
 	private AnimalController animalController;
     private Animal[] frequent150, frequent50, infrequent150, infrequent50;
@@ -22,7 +22,7 @@ public class Experiment {
 
         initializeAnimals();
 		initializeTrials();
-		currentTrialIndex = 0;
+		currentTrialIndex = -1;
 	}
 
     private void initializeAnimals() {
@@ -63,19 +63,14 @@ public class Experiment {
 	
 	private void addTrials(Treatment treatment, Animal[] animals) {
 		for (int index = 0; index < animals.length; index++) {
+            currentTrialIndex++;
 			listOfTrials[currentTrialIndex] = new Trial(currentTrialIndex + 1, participantNumber, treatment, animals[index], animals);
-			currentTrialIndex++;
 		}
 	}
 	
-	public Trial currentTrial() {
-		return listOfTrials[currentTrialIndex];
-	}
-	
 	public Trial nextTrial() {
-		Trial t = listOfTrials[currentTrialIndex];
         this.currentTrialIndex += 1;
-        return t;
+		return listOfTrials[currentTrialIndex];
 	}
 	
 	public void WriteDataToDisk() {

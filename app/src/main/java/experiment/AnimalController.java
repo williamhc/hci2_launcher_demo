@@ -7,6 +7,7 @@ import android.graphics.drawable.Drawable;
 import com.example.hci2_demo.app.R;
 import java.io.IOException;
 import java.lang.reflect.Field;
+import java.util.LinkedList;
 
 
 public class AnimalController {
@@ -69,24 +70,40 @@ public class AnimalController {
 	}
 	
 	public Animal[] getFrequentAnimals(int animalCount, int count) {
-		Animal[] animals = animalCount == 50 ? animalImages50: animalImages150;
+        Animal[] animals = animalCount == 50 ? animalImages50: animalImages150;
         Animal[] frequentAnimals = new Animal[count];
+        LinkedList<Animal> animalsChosen = new LinkedList<Animal>();
+        int index = 0;
 
-        for (int i = 0; i < count; i++) {
-            int randNum = (int) Math.floor(animalCount * 0.3 * Math.random());
-            frequentAnimals[i] = animals[randNum];
+        while (index < count) {
+            int randomNumber = (int) Math.floor(animalCount * 0.3 * Math.random());
+            Animal chosenAnimal = animals[randomNumber];
+            if (!animalsChosen.contains(chosenAnimal)) {
+                frequentAnimals[index] = chosenAnimal;
+                animalsChosen.add(chosenAnimal);
+                index++;
+            }
         }
+
         return frequentAnimals;
     }
 	
 	public Animal[] getInfrequentAnimals(int animalCount, int count) {
         Animal[] animals = animalCount == 50 ? animalImages50: animalImages150;
         Animal[] frequentAnimals = new Animal[count];
+        LinkedList<Animal> animalsChosen = new LinkedList<Animal>();
+        int index = 0;
 
-        for (int i = 0; i < count; i++) {
-            int randNum = animalCount - (int) Math.ceil(animalCount * 0.3 * Math.random());
-            frequentAnimals[i] = animals[randNum];
+        while (index < count) {
+            int randomNumber = animalCount - (int) Math.ceil(animalCount * 0.3 * Math.random());
+            Animal chosenAnimal = animals[randomNumber];
+            if (!animalsChosen.contains(chosenAnimal)) {
+                frequentAnimals[index] = chosenAnimal;
+                animalsChosen.add(chosenAnimal);
+                index++;
+            }
         }
+
         return frequentAnimals;
 	}
 	
