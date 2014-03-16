@@ -20,15 +20,4 @@
         android:hint="Enter your app name"
         android:textColor="#000000" />
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="200dp">
-
-        <ImageButton
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:id="@+id/imageButton"
-            android:layout_gravity="center_horizontal" />
-    </FrameLayout>
-
 </LinearLayout>

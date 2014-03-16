@@ -49,23 +49,31 @@ public class KeyboardFragment extends LauncherFragment {
             public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
                 //Go through the list of apps, find those that match
                 //just display one image at a time
+                updateListView(charSequence);
             }
 
             @Override
             public void afterTextChanged(Editable editable) {
                 //Do nothing
-                //Go through the list of apps, find those that match
-                //just display one image at a time
-                if(count < icons.size())
+            }
+
+            private void updateListView(CharSequence filterText)
+            {
+                ArrayList<View> newList = new ArrayList<View>();
+                //Update List view with new objects
+                for(int i = 0; i < icons.size(); i++)
                 {
-                    ImageButton button = (ImageButton) rootView.findViewById(R.id.imageButton);
-                    button.setImageDrawable((Drawable)icons.get(count).getTag());
-                    count ++;
+                    /*newList.add(icons.get(i));*/
+                    if(((TextView)icons.get(i)).getText().toString().toLowerCase().startsWith(filterText.toString().toLowerCase()))
+                    {
+                        newList.add(icons.get(i));
+                    }
                 }
-                else
-                {
-                    count = 0;
-                }
+
+                //Code below works
+                final AppButtonArrayAdapter adapter = new AppButtonArrayAdapter(context, newList);
+                ListView lv = (ListView) rootView.findViewById(R.id.listView);
+                lv.setAdapter(adapter);
             }
         });
         /*
@@ -76,15 +84,13 @@ public class KeyboardFragment extends LauncherFragment {
             }
         };
 
-        keyboardBtn.setOnClickListener(keyboardListener);
+        //keyboardBtn.setOnClickListener(keyboardListener);
         //rootView.refreshDrawableState();
-        ViewGroup rootView = (ViewGroup) inflater.inflate(this.getLayoutID(), container, false);
-
+        //ViewGroup rootView = (ViewGroup) inflater.inflate(this.getLayoutID(), container, false);
+        */
         final AppButtonArrayAdapter adapter = new AppButtonArrayAdapter(this.context, this.icons);
         ListView lv = (ListView) rootView.findViewById(R.id.listView);
         lv.setAdapter(adapter);
-
->>>>>>> 4eea230773bb83ec3a7070fbac0f2cda94e56786*/
         return rootView;
     }
 
