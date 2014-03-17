@@ -80,6 +80,7 @@ public class Experiment {
                     addTrialsForTechnique("Fitts' Wheel", TRIALS_PER_TREATMENT);
                     break;
             }
+        }
 	}
 	
 	private void addTrialsForTechnique(String technique, int trials) {
