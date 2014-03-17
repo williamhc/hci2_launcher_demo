@@ -34,7 +34,7 @@ public class Experiment {
 
     private void initializeTrials() {
         int treatmentOrder = participantNumber % 6;
-        switch(treatmentOrder) {
+        switch(2) {
             case 0:
                 addTrialsForTechnique("Fitts' Wheel", TRIALS_PER_TREATMENT);
                 addTrialsForTechnique("GPS Launcher", TRIALS_PER_TREATMENT);
