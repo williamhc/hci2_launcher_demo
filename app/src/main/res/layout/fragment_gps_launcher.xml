@@ -28,31 +28,27 @@
         <ImageButton
             android:layout_width="90dp"
             android:layout_height="90dp"
-            android:id="@+id/imageButton9"
+            android:id="@+id/imageButton1"
             android:layout_gravity="bottom"
-            android:layout_marginLeft="0dp"
-            android:src="@drawable/ape" />
+            android:layout_marginLeft="0dp" />
 
         <ImageButton
             android:layout_width="90dp"
             android:layout_height="90dp"
-            android:id="@+id/imageButton10"
-            android:layout_gravity="bottom"
-            android:src="@drawable/armadillo" />
+            android:id="@+id/imageButton2"
+            android:layout_gravity="bottom" />
 
         <ImageButton
             android:layout_width="90dp"
             android:layout_height="90dp"
-            android:id="@+id/imageButton11"
-            android:layout_gravity="bottom"
-            android:src="@drawable/baboon" />
+            android:id="@+id/imageButton3"
+            android:layout_gravity="bottom" />
 
         <ImageButton
             android:layout_width="90dp"
             android:layout_height="90dp"
-            android:id="@+id/imageButton12"
+            android:id="@+id/imageButton4"
             android:layout_gravity="bottom"
-            android:src="@drawable/badger"
             android:layout_marginRight="0dp" />
     </LinearLayout>
 
@@ -66,27 +62,23 @@
         <ImageButton
             android:layout_width="90dp"
             android:layout_height="90dp"
-            android:id="@+id/imageButton13"
-            android:layout_marginLeft="0dp"
-            android:src="@drawable/dragonfly" />
+            android:id="@+id/imageButton5"
+            android:layout_marginLeft="0dp" />
 
         <ImageButton
             android:layout_width="90dp"
             android:layout_height="90dp"
-            android:id="@+id/imageButton14"
-            android:src="@drawable/chamois" />
+            android:id="@+id/imageButton6" />
 
         <ImageButton
             android:layout_width="90dp"
             android:layout_height="90dp"
-            android:id="@+id/imageButton15"
-            android:src="@drawable/cheetah" />
+            android:id="@+id/imageButton7" />
 
         <ImageButton
             android:layout_width="90dp"
             android:layout_height="90dp"
-            android:id="@+id/imageButton16"
-            android:src="@drawable/chicken"
+            android:id="@+id/imageButton8"
             android:layout_marginRight="0dp" />
     </LinearLayout>
 
@@ -101,27 +93,23 @@
         <ImageButton
             android:layout_width="90dp"
             android:layout_height="90dp"
-            android:id="@+id/imageButton17"
-            android:layout_marginLeft="0dp"
-            android:src="@drawable/woodpecker" />
+            android:id="@+id/imageButton9"
+            android:layout_marginLeft="0dp" />
 
         <ImageButton
             android:layout_width="90dp"
             android:layout_height="90dp"
-            android:id="@+id/imageButton18"
-            android:src="@drawable/worm" />
+            android:id="@+id/imageButton10"/>
 
         <ImageButton
             android:layout_width="90dp"
             android:layout_height="90dp"
-            android:id="@+id/imageButton19"
-            android:src="@drawable/wren" />
+            android:id="@+id/imageButton11" />
 
         <ImageButton
             android:layout_width="90dp"
             android:layout_height="90dp"
-            android:id="@+id/imageButton20"
-            android:src="@drawable/yak"
+            android:id="@+id/imageButton12"
             android:layout_marginRight="0dp" />
     </LinearLayout>
 
@@ -131,38 +119,33 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/linearLayout"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="30dp"
         android:id="@+id/linearLayout2">
 
         <ImageButton
             android:layout_width="90dp"
             android:layout_height="90dp"
-            android:id="@+id/imageButton5"
+            android:id="@+id/imageButton13"
             android:layout_gravity="center_vertical"
-            android:layout_marginLeft="0dp"
-            android:src="@drawable/alpaca" />
+            android:layout_marginLeft="0dp" />
 
         <ImageButton
             android:layout_width="90dp"
             android:layout_height="90dp"
-            android:id="@+id/imageButton6"
-            android:layout_gravity="center_vertical"
-            android:src="@drawable/ant" />
+            android:id="@+id/imageButton14"
+            android:layout_gravity="center_vertical" />
 
         <ImageButton
             android:layout_width="90dp"
             android:layout_height="90dp"
-            android:id="@+id/imageButton7"
-            android:layout_gravity="center_vertical"
-            android:src="@drawable/anteater"/>
+            android:id="@+id/imageButton15"
+            android:layout_gravity="center_vertical"/>
 
         <ImageButton
             android:layout_width="90dp"
             android:layout_height="90dp"
-            android:id="@+id/imageButton8"
+            android:id="@+id/imageButton16"
             android:layout_gravity="center_vertical"
-            android:layout_marginRight="0dp"
-            android:src="@drawable/antelope" />
+            android:layout_marginRight="0dp" />
     </LinearLayout>
 
     <LinearLayout
@@ -170,43 +153,37 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:weightSum="1"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
         android:layout_alignParentStart="true"
         android:id="@+id/linearLayout">
 
         <ImageButton
             android:layout_width="90dp"
             android:layout_height="90dp"
-            android:id="@+id/imageButton"
-            android:layout_gravity="center_vertical"
+            android:id="@+id/imageButton17"
             android:layout_weight="0"
-            android:src="@drawable/zebra"
             android:layout_marginLeft="0dp" />
 
         <ImageButton
             android:layout_width="90dp"
             android:layout_height="90dp"
-            android:id="@+id/imageButton2"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="0"
-            android:src="@drawable/aardvark"/>
+            android:id="@+id/imageButton18"
+            android:layout_weight="0"/>
 
         <ImageButton
             android:layout_width="90dp"
             android:layout_height="90dp"
-            android:id="@+id/imageButton3"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="0"
-            android:src="@drawable/albatross"/>
+            android:id="@+id/imageButton19"
+            android:layout_weight="0"/>
 
         <ImageButton
             android:layout_width="90dp"
             android:layout_height="90dp"
-            android:id="@+id/imageButton4"
-            android:src="@drawable/alligator"
+            android:id="@+id/AppDrawerButton"
+            android:src="@drawable/zzzappdrawer"
             android:clickable="true"
-            android:focusableInTouchMode="false" />
+            android:focusableInTouchMode="false"
+            android:layout_marginTop="45dp"
+            android:layout_marginStart="5dp"/>
     </LinearLayout>
 
 </LinearLayout>

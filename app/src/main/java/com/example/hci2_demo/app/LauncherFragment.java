@@ -17,9 +17,9 @@ import experiment.Animal;
 import experiment.Trial;
 
 public abstract class LauncherFragment extends Fragment {
-    private final AppLaunch appLaunch;
+    final AppLaunch appLaunch;
     public Context context;
-    private Trial trial;
+    Trial trial;
     private int numErrors;
     private Calendar startTime;
     List<View> icons;
