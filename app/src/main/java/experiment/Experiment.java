@@ -37,6 +37,7 @@ public class Experiment {
 
     private void initializeTrials(String technique) {
         int treatmentOrder = participantNumber % 6;
+
         if (technique.equals("Fitts' Wheel")) {
             addTrialsForTechnique("Fitts' Wheel", TRIALS_PER_TREATMENT);
         }
@@ -79,7 +80,6 @@ public class Experiment {
                     addTrialsForTechnique("Fitts' Wheel", TRIALS_PER_TREATMENT);
                     break;
             }
-        }
 	}
 	
 	private void addTrialsForTechnique(String technique, int trials) {

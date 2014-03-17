@@ -1,9 +1,8 @@
 package experiment;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.List;
 
 public class Trial {
 	private int trialNum;
@@ -21,14 +20,20 @@ public class Trial {
 		this.treatment = treatment;
         this.searchAnimal = animal;
         if (this.treatment.Technique().equals("Fitts' Wheel")) {
-            List<Animal> animalList = Arrays.asList(allAnimals);
+            ArrayList<Animal> animalList = new ArrayList<Animal>();
+            for (int i = 0; i < allAnimals.length; i++) {
+                animalList.add(new Animal(allAnimals[i].img, allAnimals[i].img_id, allAnimals[i].name));
+            }
             Collections.sort(animalList, new Comparator<Animal>() {
                 @Override
                 public int compare(Animal a1, Animal a2) {
                     return a1.name.compareTo(a2.name);
                 }
             });
-            this.allAnimals = (Animal[]) animalList.toArray();
+            this.allAnimals = new Animal[allAnimals.length];
+            for (int i = 0; i < animalList.size(); i++) {
+                this.allAnimals[i] = animalList.get(i);
+            }
         }
         else {
             this.allAnimals = allAnimals;
