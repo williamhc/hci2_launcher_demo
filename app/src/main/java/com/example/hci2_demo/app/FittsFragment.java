@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.TextView;
 
 /**
  * A fragment for Fitts' wheel.
@@ -25,7 +26,7 @@ public class FittsFragment extends LauncherFragment {
         ViewGroup rootView = (ViewGroup) super.onCreateView(inflater, container, savedInstanceState);
 
         final AppButtonArrayAdapter adapter = new AppButtonArrayAdapter(this.context, this.icons);
-        ListView lv = (ListView) rootView.findViewById(R.id.listView);
+        FastSearchListView lv = (FastSearchListView) rootView.findViewById(R.id.fast);
         lv.setAdapter(adapter);
 
         return rootView;
