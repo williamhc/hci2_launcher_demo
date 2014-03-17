@@ -6,10 +6,12 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 import experiment.Animal;
 import experiment.Trial;
@@ -20,7 +22,7 @@ public abstract class LauncherFragment extends Fragment {
     private Trial trial;
     private int numErrors;
     private Calendar startTime;
-    ArrayList<View> icons;
+    List<View> icons;
 
     public abstract int getLayoutID();
 
@@ -59,7 +61,6 @@ public abstract class LauncherFragment extends Fragment {
             animalButton = new TextView(context);
             animalButton.setText(animal.name.substring(0, 1).toUpperCase() + animal.name.substring(1));
             animalButton.setCompoundDrawablesWithIntrinsicBounds(0, animal.img_id, 0, 0);
-
             animalButton.setPadding(30, 30, 30, 30);
             final LauncherFragment f = this;
             final int finalI = i;
@@ -76,6 +77,21 @@ public abstract class LauncherFragment extends Fragment {
         }
 
         return rootView;
+    }
+
+    public List<LauncherRow> createLauncherRows(List<View> views){
+        ArrayList<LauncherRow> rows = new ArrayList<LauncherRow>();
+
+        for (int i = 0; i < views.size(); i+=4) {
+            View[] rowViews = new View[4];
+            for (int j = 0; j < 4; j++) {
+                if (i + j < views.size())
+                    rowViews[j] = views.get(i+j);
+            }
+            rows.add(new LauncherRow(this.context, rowViews));
+        }
+
+        return rows;
     }
 }
 

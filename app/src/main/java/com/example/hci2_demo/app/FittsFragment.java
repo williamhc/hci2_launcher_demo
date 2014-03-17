@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 /**
  * A fragment for Fitts' wheel.
  */
@@ -25,7 +27,8 @@ public class FittsFragment extends LauncherFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         ViewGroup rootView = (ViewGroup) super.onCreateView(inflater, container, savedInstanceState);
 
-        final AppButtonArrayAdapter adapter = new AppButtonArrayAdapter(this.context, this.icons);
+        ArrayList<View> rows = new ArrayList<View>(createLauncherRows(icons));
+        final AppButtonArrayAdapter adapter = new AppButtonArrayAdapter(this.context, rows);
         FastSearchListView lv = (FastSearchListView) rootView.findViewById(R.id.fast);
         lv.setAdapter(adapter);
 
