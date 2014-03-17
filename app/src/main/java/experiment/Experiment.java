@@ -7,21 +7,24 @@ import java.io.IOException;
 import java.util.LinkedList;
 
 public class Experiment {
-	private final int NUM_TRIALS = 60;
-	private final int TRIALS_PER_TREATMENT = 5;
+	private int numTrials;
+	private int TRIALS_PER_TREATMENT;
 	private Trial listOfTrials[];
 	private int currentTrialIndex = -1;
-	private int participantNumber = 1;
+	private int participantNumber;
 	private AnimalController animalController;
     private Animal[] frequent150, frequent50, infrequent150, infrequent50;
     private Context context;
 
-    public Experiment(Context context) {
+    public Experiment(Context context, int trials, String technique, int trialsPerTreatment, int participantNum) {
 		animalController = new AnimalController(context);
-		this.listOfTrials = new Trial[NUM_TRIALS];
-        this.participantNumber = 1;
+        this.numTrials = trials;
+        this.TRIALS_PER_TREATMENT = trialsPerTreatment;
+		this.listOfTrials = new Trial[trials];
+        this.participantNumber = participantNum;
+        this.context = context;
         initializeAnimals();
-		initializeTrials();
+		initializeTrials(technique);
 		currentTrialIndex = -1;
 	}
 
@@ -32,47 +35,62 @@ public class Experiment {
         infrequent50 = animalController.getInfrequentAnimals(50, TRIALS_PER_TREATMENT);
     }
 
-    private void initializeTrials() {
+    private void initializeTrials(String technique) {
         int treatmentOrder = participantNumber % 6;
-
-        switch(treatmentOrder) {
-            case 0:
-                addTrialsForTechnique("Fitts' Wheel", TRIALS_PER_TREATMENT);
-                addTrialsForTechnique("GPS Launcher", TRIALS_PER_TREATMENT);
-                addTrialsForTechnique("Keyboard Search", TRIALS_PER_TREATMENT);
-                break;
-            case 1:
-                addTrialsForTechnique("Fitts' Wheel", TRIALS_PER_TREATMENT);
-                addTrialsForTechnique("Keyboard Search", TRIALS_PER_TREATMENT);
-                addTrialsForTechnique("GPS Launcher", TRIALS_PER_TREATMENT);
-                break;
-            case 2:
-                addTrialsForTechnique("GPS Launcher", TRIALS_PER_TREATMENT);
-                addTrialsForTechnique("Fitts' Wheel", TRIALS_PER_TREATMENT);
-                addTrialsForTechnique("Keyboard Search", TRIALS_PER_TREATMENT);
-                break;
-            case 3:
-                addTrialsForTechnique("GPS Launcher", TRIALS_PER_TREATMENT);
-                addTrialsForTechnique("Keyboard Search", TRIALS_PER_TREATMENT);
-                addTrialsForTechnique("Fitts' Wheel", TRIALS_PER_TREATMENT);
-                break;
-            case 4:
-                addTrialsForTechnique("Keyboard Search", TRIALS_PER_TREATMENT);
-                addTrialsForTechnique("Fitts' Wheel", TRIALS_PER_TREATMENT);
-                addTrialsForTechnique("GPS Launcher", TRIALS_PER_TREATMENT);
-                break;
-            case 5:
-                addTrialsForTechnique("Keyboard Search", TRIALS_PER_TREATMENT);
-                addTrialsForTechnique("GPS Launcher", TRIALS_PER_TREATMENT);
-                addTrialsForTechnique("Fitts' Wheel", TRIALS_PER_TREATMENT);
-                break;
+        if (technique.equals("Fitts' Wheel")) {
+            addTrialsForTechnique("Fitts' Wheel", TRIALS_PER_TREATMENT);
+        }
+        else if (technique.equals("GPS Launcher")) {
+            addTrialsForTechnique("GPS Launcher", TRIALS_PER_TREATMENT);
+        }
+        else if (technique.equals("Keyboard Search")) {
+            addTrialsForTechnique("Keyboard Search", TRIALS_PER_TREATMENT);
+        }
+        else {
+            switch(treatmentOrder) {
+                case 0:
+                    addTrialsForTechnique("Fitts' Wheel", TRIALS_PER_TREATMENT);
+                    addTrialsForTechnique("GPS Launcher", TRIALS_PER_TREATMENT);
+                    addTrialsForTechnique("Keyboard Search", TRIALS_PER_TREATMENT);
+                    break;
+                case 1:
+                    addTrialsForTechnique("Fitts' Wheel", TRIALS_PER_TREATMENT);
+                    addTrialsForTechnique("Keyboard Search", TRIALS_PER_TREATMENT);
+                    addTrialsForTechnique("GPS Launcher", TRIALS_PER_TREATMENT);
+                    break;
+                case 2:
+                    addTrialsForTechnique("GPS Launcher", TRIALS_PER_TREATMENT);
+                    addTrialsForTechnique("Fitts' Wheel", TRIALS_PER_TREATMENT);
+                    addTrialsForTechnique("Keyboard Search", TRIALS_PER_TREATMENT);
+                    break;
+                case 3:
+                    addTrialsForTechnique("GPS Launcher", TRIALS_PER_TREATMENT);
+                    addTrialsForTechnique("Keyboard Search", TRIALS_PER_TREATMENT);
+                    addTrialsForTechnique("Fitts' Wheel", TRIALS_PER_TREATMENT);
+                    break;
+                case 4:
+                    addTrialsForTechnique("Keyboard Search", TRIALS_PER_TREATMENT);
+                    addTrialsForTechnique("Fitts' Wheel", TRIALS_PER_TREATMENT);
+                    addTrialsForTechnique("GPS Launcher", TRIALS_PER_TREATMENT);
+                    break;
+                case 5:
+                    addTrialsForTechnique("Keyboard Search", TRIALS_PER_TREATMENT);
+                    addTrialsForTechnique("GPS Launcher", TRIALS_PER_TREATMENT);
+                    addTrialsForTechnique("Fitts' Wheel", TRIALS_PER_TREATMENT);
+                    break;
+            }
         }
 	}
 	
 	private void addTrialsForTechnique(String technique, int trials) {
 		LinkedList<Integer> treatmentsRemaining = new LinkedList<Integer>();
-		
-		for (int index = 1; index <= 4; index++) {
+		int actualTrials = 4;
+
+        if (trials < 4) {
+            actualTrials = trials;
+        }
+
+		for (int index = 1; index <= actualTrials; index++) {
 			treatmentsRemaining.add(Integer.valueOf(index));
 		}
 		
@@ -100,6 +118,11 @@ public class Experiment {
 	
 	public Trial nextTrial() {
         this.currentTrialIndex += 1;
+
+        if (currentTrialIndex >= listOfTrials.length) {
+            return null;
+        }
+
 		return listOfTrials[currentTrialIndex];
 	}
 

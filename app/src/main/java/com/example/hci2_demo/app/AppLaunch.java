@@ -6,6 +6,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import experiment.Experiment;
+import experiment.Trial;
+
 public class AppLaunch extends Activity {
     public Experiment experiment;
 
@@ -13,8 +15,9 @@ public class AppLaunch extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_app_launch);
-        this.experiment = new Experiment(getApplicationContext());
-        this.startNextTrial();
+        getFragmentManager().beginTransaction()
+                .replace(R.id.container, new StartFragment(this, getApplicationContext()))
+                .commit();
     }
 
     @Override
@@ -37,9 +40,18 @@ public class AppLaunch extends Activity {
     }
 
     public void startNextTrial() {
-        this.experiment.nextTrial();
-        getFragmentManager().beginTransaction()
-            .replace(R.id.container, new PreTrialFragment(this, getApplicationContext()))
-            .commit();
+        Trial nextTrial = this.experiment.nextTrial();
+
+        if (nextTrial != null) {
+            getFragmentManager().beginTransaction()
+                    .replace(R.id.container, new PreTrialFragment(this, getApplicationContext()))
+                    .commit();
+        }
+        else {
+            getFragmentManager().beginTransaction()
+                    .replace(R.id.container, new StartFragment(this, getApplicationContext()))
+                    .commit();
+        }
+
     }
 }

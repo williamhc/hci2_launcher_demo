@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:layout_width="371dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/partNum"
+        android:layout_gravity="center_horizontal"
+        android:textColor="#000000"
+        android:background="#FFFFFF"
+        android:hint="Enter participant ID" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Start Experiment"
+        android:id="@+id/begin"
+        android:width="200dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fitts'"
+        android:id="@+id/fitts"
+        android:width="200dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="GPS Location"
+        android:id="@+id/location"
+        android:width="200dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Keyboard Search"
+        android:id="@+id/keyboard"
+        android:width="200dp" />
+
+</LinearLayout>

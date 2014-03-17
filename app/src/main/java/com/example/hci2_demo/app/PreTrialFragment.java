@@ -64,6 +64,9 @@ public class PreTrialFragment extends Fragment {
             return new FittsFragment(appLaunch, context);
         else if (technique.equals("GPS Launcher"))
             return new GPSLauncherFragment(context);
+        else if (technique.equals("Keyboard Search")) {
+            return new KeyboardFragment(appLaunch, context);
+        }
 
         return new PreTrialFragment(appLaunch, context);
     }
