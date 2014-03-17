@@ -2,6 +2,7 @@ package com.example.hci2_demo.app;
 
 import android.app.FragmentTransaction;
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,21 +15,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import experiment.Animal;
-import experiment.Trial;
 
 /**
  * Created by alumbs on 15/03/14.
  */
 public class GPSLauncherFragment extends LauncherFragment {
-    public Context context;
-    public Trial trial;
-    private final int APP_DRAWER = 20;
+    private final int MAIN_PAGE = 16;
     private List<View> mainScreen;
 
 
     public GPSLauncherFragment(AppLaunch appLaunch, Context context) {
         super(appLaunch, context);
-        this.trial = appLaunch.experiment.currentTrial();
+        this.mainScreen = new ArrayList<View>();
     }
 
     @Override
@@ -43,7 +41,9 @@ public class GPSLauncherFragment extends LauncherFragment {
         TextView locationName = (TextView) rootView.findViewById(R.id.locationTextView);
         locationName.setText("Uncategorized location");
 
-        ImageButton appDrawer = (ImageButton) rootView.findViewById(R.id.AppDrawerButton);
+        ImageButton appDrawer = new ImageButton(context);
+        Drawable appDrawerble = getResources().getDrawable(R.drawable.zzzappdrawer);
+        appDrawer.setImageDrawable(appDrawerble);
         //System.out.println("DEBUG: the appDrawer button is: " + appDrawer);
         appDrawer.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,7 +55,7 @@ public class GPSLauncherFragment extends LauncherFragment {
             }
         });
 
-        for (int i = 0; i < 19; i++) {
+        for (int i = 0; i < MAIN_PAGE - 1; i++) {
             TextView animalButton;
             View.OnClickListener l;
             Animal animal = this.trial.allAnimals[i];
@@ -77,6 +77,8 @@ public class GPSLauncherFragment extends LauncherFragment {
 
             this.mainScreen.add(animalButton);
         }
+
+        this.mainScreen.add(appDrawer);
 
         ArrayList<View> rows = new ArrayList<View>(createLauncherRows(mainScreen));
         final AppButtonArrayAdapter adapter = new AppButtonArrayAdapter(this.context, rows);

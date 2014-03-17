@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -36,7 +35,7 @@ public abstract class LauncherFragment extends Fragment {
     }
 
     public void appWasTapped(Animal animal) {
-        if (animal == this.trial.searchAnimal){
+        if (this.trial.searchAnimal.name.equals(animal.name)){
             Calendar now = Calendar.getInstance();
             trial.timeTaken = now.getTimeInMillis() - this.startTime.getTimeInMillis();
             this.appLaunch.startNextTrial();
