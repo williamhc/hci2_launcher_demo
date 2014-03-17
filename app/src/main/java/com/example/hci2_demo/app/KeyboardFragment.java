@@ -18,18 +18,19 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import android.widget.ListView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import experiment.Trial;
 
 public class KeyboardFragment extends LauncherFragment {
     private Trial trial;
-    ArrayList<View> icons;
     private Activity appLaunch;
     private int count;
 
     public KeyboardFragment(AppLaunch appLaunch, Context context) {
         super(appLaunch, context);
         this.appLaunch = appLaunch;
-        this.icons = super.icons;
         count = 0;
     }
 
@@ -59,36 +60,28 @@ public class KeyboardFragment extends LauncherFragment {
 
             private void updateListView(CharSequence filterText)
             {
-                ArrayList<View> newList = new ArrayList<View>();
+                List<View> newList = new ArrayList<View>();
                 //Update List view with new objects
                 for(int i = 0; i < icons.size(); i++)
                 {
                     /*newList.add(icons.get(i));*/
                     if(((TextView)icons.get(i)).getText().toString().toLowerCase().startsWith(filterText.toString().toLowerCase()))
                     {
+                        //rootView.removeAllViews();
                         newList.add(icons.get(i));
                     }
                 }
 
                 //Code below works
-                final AppButtonArrayAdapter adapter = new AppButtonArrayAdapter(context, newList);
+                ArrayList<View> rows = new ArrayList<View>(createLauncherRows(newList));
+                final AppButtonArrayAdapter adapter = new AppButtonArrayAdapter(context, rows);
                 ListView lv = (ListView) rootView.findViewById(R.id.listView);
                 lv.setAdapter(adapter);
             }
         });
-        /*
-        View.OnClickListener keyboardListener = new View.OnClickListener() {
-            public void onClick(View view) {
-                InputMethodManager imm = (InputMethodManager) appLaunch.getSystemService(Context.INPUT_METHOD_SERVICE);
-                imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,0);
-            }
-        };
 
-        //keyboardBtn.setOnClickListener(keyboardListener);
-        //rootView.refreshDrawableState();
-        //ViewGroup rootView = (ViewGroup) inflater.inflate(this.getLayoutID(), container, false);
-        */
-        final AppButtonArrayAdapter adapter = new AppButtonArrayAdapter(this.context, this.icons);
+        ArrayList<View> rows = new ArrayList<View>(createLauncherRows(icons));
+        final AppButtonArrayAdapter adapter = new AppButtonArrayAdapter(this.context, rows);
         ListView lv = (ListView) rootView.findViewById(R.id.listView);
         lv.setAdapter(adapter);
         return rootView;
