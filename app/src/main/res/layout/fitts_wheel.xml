@@ -7,4 +7,4 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/fast"
     android:fastScrollEnabled="true"
-    android:fastScrollAlwaysVisible="false"></view>
+    android:fastScrollAlwaysVisible="true"></view>

@@ -5,6 +5,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.SectionIndexer;
+import android.widget.TextView;
+
 import java.util.ArrayList;
 
 public class AppButtonArrayAdapter extends ArrayAdapter<View> implements SectionIndexer {
@@ -25,9 +27,14 @@ public class AppButtonArrayAdapter extends ArrayAdapter<View> implements Section
 
     public int getPositionForSection(int section) {
         for (int i=0; i < this.getCount(); i++) {
-//            String item = this.values.get(i).toLowerCase();
-//            if (item.charAt(0) == sections.charAt(section))
-//                return i;
+            ViewGroup row = (ViewGroup) this.values.get(i);
+            TextView tv = (TextView) row.getChildAt(0);
+            String item = (String) tv.getText();
+            item = item.toUpperCase();
+            char s = sections.charAt(section);
+            char t = item.charAt(0);
+            if (item.charAt(0) == sections.charAt(section))
+                return i;
         }
         return 0;
     }
