@@ -64,8 +64,11 @@ public class KeyboardFragment extends LauncherFragment {
                 //Update List view with new objects
                 for(int i = 0; i < icons.size(); i++)
                 {
+                    TextView tv = (TextView)icons.get(i);
+                    String tvText = tv.getText().toString().toLowerCase();
+                    String filter = filterText.toString().toLowerCase();
                     /*newList.add(icons.get(i));*/
-                    if(((TextView)icons.get(i)).getText().toString().toLowerCase().startsWith(filterText.toString().toLowerCase()))
+                    if((tvText.startsWith(filter)))
                     {
                         //rootView.removeAllViews();
                         newList.add(icons.get(i));

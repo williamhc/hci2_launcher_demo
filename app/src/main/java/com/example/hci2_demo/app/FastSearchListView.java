@@ -5,7 +5,9 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.AttributeSet;
+import android.view.MotionEvent;
 import android.widget.ListView;
+import android.widget.SectionIndexer;
 
 public class FastSearchListView extends ListView {
 
@@ -65,6 +67,43 @@ public class FastSearchListView extends ListView {
                     sx + textPaint.getTextSize() / 2, getPaddingTop()
                     + indexSize * (i + 1), textPaint);
 
+    }
 
+    public boolean onTouchEvent(MotionEvent event) {
+        float x = event.getX();
+
+        switch (event.getAction()) {
+            case MotionEvent.ACTION_DOWN: {
+                if (x < sx)
+                    return super.onTouchEvent(event);
+                else {
+                    // We touched the index bar
+                    float y = event.getY() - this.getPaddingTop() - getPaddingBottom();
+                    int currentPosition = (int) Math.floor(y / indexSize);
+                    currentPosition = Math.max( 0, currentPosition );
+                    currentPosition = Math.min( sections.length - 1, currentPosition );
+                    section = sections[currentPosition];
+                    this.setSelection(((SectionIndexer) getAdapter())
+                            .getPositionForSection(currentPosition));
+                }
+                break;
+            }
+            case MotionEvent.ACTION_MOVE: {
+                if (x < sx)
+                    return super.onTouchEvent(event);
+                else {
+                    float y = event.getY();
+                    int currentPosition = (int) Math.floor(y / indexSize);
+                    currentPosition = Math.max( 0, currentPosition );
+                    currentPosition = Math.min( sections.length - 1, currentPosition );
+                    section = sections[currentPosition];
+                    this.setSelection(((SectionIndexer) getAdapter())
+                            .getPositionForSection(currentPosition));
+
+                }
+                break;
+            }
+        }
+        return super.onTouchEvent(event);
     }
 }

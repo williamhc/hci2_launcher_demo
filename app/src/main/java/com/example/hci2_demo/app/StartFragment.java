@@ -43,7 +43,7 @@ public class StartFragment extends Fragment {
 
         location.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                Experiment experiment = new Experiment(context, 1, "GPS Location", 1, participantNum);
+                Experiment experiment = new Experiment(context, 1, "GPS Launcher", 1, participantNum);
                 appLaunch.experiment = experiment;
                 appLaunch.startNextTrial();
             }

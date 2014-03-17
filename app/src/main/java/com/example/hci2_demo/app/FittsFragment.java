@@ -3,6 +3,7 @@ package com.example.hci2_demo.app;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
@@ -33,7 +34,7 @@ public class FittsFragment extends LauncherFragment {
         ArrayList<View> rows = new ArrayList<View>(createLauncherRows(icons));
         for (int i = 0; i < rows.size(); i++) {
             ViewGroup row = (ViewGroup) rows.get(i);
-            row.setPadding(0, 0, 30, 0);
+            row.setPadding(0, 0, 50, 0);
         }
         final AppButtonArrayAdapter adapter = new AppButtonArrayAdapter(this.context, rows);
         FastSearchListView lv = (FastSearchListView) rootView.findViewById(R.id.fast);

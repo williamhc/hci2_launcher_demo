@@ -49,7 +49,6 @@ public class GPSLauncherFragment extends LauncherFragment {
             @Override
             public void onClick(View view) {
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
-
                 ft.replace(R.id.container, new AppDrawerFragment(appLaunch, context));
                 ft.commit();
             }
