@@ -34,7 +34,6 @@ public class Experiment {
 
     private void initializeTrials() {
         int treatmentOrder = participantNumber % 6;
-
         switch(treatmentOrder) {
             case 0:
                 addTrialsForTechnique("Fitts' Wheel", TRIALS_PER_TREATMENT);

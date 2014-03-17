@@ -62,7 +62,9 @@ public class PreTrialFragment extends Fragment {
         String technique = trial.treatment.Technique();
         if (technique.equals("Fitts' Wheel"))
             return new FittsFragment(appLaunch, context);
-        else if (technique.equals("GPS Launcher"))
+        if (technique.equals("Keyboard Search"))
+            return new KeyboardFragment(appLaunch, context);
+        if (technique.equals("GPS Launcher"))
             return new GPSLauncherFragment(context);
 
         return new PreTrialFragment(appLaunch, context);
