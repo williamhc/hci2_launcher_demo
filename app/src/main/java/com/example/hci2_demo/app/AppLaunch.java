@@ -48,6 +48,7 @@ public class AppLaunch extends Activity {
                     .commit();
         }
         else {
+            this.experiment.reportData();
             getFragmentManager().beginTransaction()
                     .replace(R.id.container, new StartFragment(this, getApplicationContext()))
                     .commit();

@@ -2,25 +2,20 @@ package com.example.hci2_demo.app;
 
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.TextView;
-
-import java.util.ArrayList;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import experiment.Animal;
 import experiment.Trial;
 
 public class KeyboardFragment extends LauncherFragment {
@@ -39,6 +34,7 @@ public class KeyboardFragment extends LauncherFragment {
         super.onCreateView(inflater, container, savedInstanceState);
         final ViewGroup rootView = (ViewGroup) inflater.inflate(this.getLayoutID(), container, false);
         EditText appFilterText = (EditText) rootView.findViewById(R.id.editText);
+        final LauncherFragment frag = this;
 
         appFilterText.addTextChangedListener(new TextWatcher() {
             @Override
@@ -49,8 +45,11 @@ public class KeyboardFragment extends LauncherFragment {
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
                 //Go through the list of apps, find those that match
-                //just display one image at a time
-                updateListView(charSequence);
+                ArrayList<String> newAnimals = updateListView(charSequence);
+                if (newAnimals.size() == 1){
+                    Animal lastAnimal = new Animal(null, 1, newAnimals.get(0));
+                    frag.appWasTapped(lastAnimal);
+                }
             }
 
             @Override
@@ -58,20 +57,21 @@ public class KeyboardFragment extends LauncherFragment {
                 //Do nothing
             }
 
-            private void updateListView(CharSequence filterText)
+            // returns the number of apps displayed in the new list
+            private ArrayList<String> updateListView(CharSequence filterText)
             {
                 List<View> newList = new ArrayList<View>();
+                ArrayList<String> animalNames = new ArrayList<String>();
                 //Update List view with new objects
                 for(int i = 0; i < icons.size(); i++)
                 {
                     TextView tv = (TextView)icons.get(i);
                     String tvText = tv.getText().toString().toLowerCase();
                     String filter = filterText.toString().toLowerCase();
-                    /*newList.add(icons.get(i));*/
-                    if((tvText.startsWith(filter)))
+                    if(filter == null || filter.length() == 0 || tvText.startsWith(filter))
                     {
-                        //rootView.removeAllViews();
                         newList.add(icons.get(i));
+                        animalNames.add(tvText);
                     }
                 }
 
@@ -80,6 +80,7 @@ public class KeyboardFragment extends LauncherFragment {
                 final AppButtonArrayAdapter adapter = new AppButtonArrayAdapter(context, rows);
                 ListView lv = (ListView) rootView.findViewById(R.id.listView);
                 lv.setAdapter(adapter);
+                return animalNames;
             }
         });
 

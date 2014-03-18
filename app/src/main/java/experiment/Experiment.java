@@ -132,7 +132,7 @@ public class Experiment {
     }
 
 
-    public void WriteDataToDisk() {
+    public void reportData() {
 		String fileName = "Participant_" + participantNumber + "_Data";
 		String buffer = "Trial\tPart#\tTech\tApps\tFreq\tErrors\tTime\n";
 		
