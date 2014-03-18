@@ -45,7 +45,7 @@ public class FastSearchListView extends ListView {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        scaledWidth = indWidth * 3;
+        scaledWidth = indWidth * 2;
         sx = this.getWidth() - this.getPaddingRight() - scaledWidth;
 
         Paint p = new Paint();

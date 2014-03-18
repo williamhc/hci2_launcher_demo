@@ -24,7 +24,6 @@ public class FittsFragment extends LauncherFragment {
         return R.layout.fitts_wheel;
     }
 
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         ViewGroup rootView = (ViewGroup) super.onCreateView(inflater, container, savedInstanceState);
 
@@ -34,7 +33,7 @@ public class FittsFragment extends LauncherFragment {
         ArrayList<View> rows = new ArrayList<View>(createLauncherRows(icons));
         for (int i = 0; i < rows.size(); i++) {
             ViewGroup row = (ViewGroup) rows.get(i);
-            row.setPadding(0, 0, 50, 0);
+            row.setPadding(0, 0, 60, 0);
         }
         final AppButtonArrayAdapter adapter = new AppButtonArrayAdapter(this.context, rows);
         FastSearchListView lv = (FastSearchListView) rootView.findViewById(R.id.fast);
