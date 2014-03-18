@@ -2,8 +2,6 @@ package experiment;
 
 import android.content.Context;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.LinkedList;
 
 public class Experiment {
@@ -132,22 +130,15 @@ public class Experiment {
     }
 
 
-    public void reportData() {
-		String fileName = "Participant_" + participantNumber + "_Data";
-		String buffer = "Trial\tPart#\tTech\tApps\tFreq\tErrors\tTime\n";
+    public String getDataReport() {
+		String title = "Participant_" + participantNumber + "_Data";
+		String dataReport = "Trial\tPart#\tTech\tApps\tFreq\tErrors\tTime\n";
 		
 		for (int index = 0; index < listOfTrials.length; index++) {
-			buffer += listOfTrials.toString() + "\n";
+			dataReport += listOfTrials[index].toString() + "\n";
 		}
-		
-		try {
-			FileOutputStream fos = context.openFileOutput(fileName, Context.MODE_PRIVATE);
-			fos.write(buffer.getBytes());
-			fos.close();
-		} 
-		catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
+
+        return dataReport;
+    }
 
 }

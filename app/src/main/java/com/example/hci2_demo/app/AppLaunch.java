@@ -1,9 +1,11 @@
 package com.example.hci2_demo.app;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import experiment.Experiment;
 import experiment.Trial;
@@ -48,10 +50,26 @@ public class AppLaunch extends Activity {
                     .commit();
         }
         else {
-            this.experiment.reportData();
+            sendOffData();
             getFragmentManager().beginTransaction()
                     .replace(R.id.container, new StartFragment(this, getApplicationContext()))
                     .commit();
+        }
+
+    }
+
+    private void sendOffData() {
+        String body = this.experiment.getDataReport();
+
+        Intent i = new Intent(Intent.ACTION_SEND);
+        i.setType("message/rfc822");
+        i.putExtra(Intent.EXTRA_EMAIL  , new String[]{"williamhumphreyscloutier@gmail.com"});
+        i.putExtra(Intent.EXTRA_SUBJECT, "HCI2 Experiment Complete");
+        i.putExtra(Intent.EXTRA_TEXT   , body);
+        try {
+            startActivity(Intent.createChooser(i, "Send mail..."));
+        } catch (android.content.ActivityNotFoundException ex) {
+            Toast.makeText(AppLaunch.this, "There are no email clients installed.", Toast.LENGTH_SHORT).show();
         }
 
     }

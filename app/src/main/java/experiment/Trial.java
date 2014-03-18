@@ -42,7 +42,7 @@ public class Trial {
 
 	public String toString() {
 		return trialNum + "\t" + participantNum + "\t" + treatment.toString() + "\t" +
-				numOfErrors + "\t" + timeTaken;
+                 + numOfErrors + "\t" + timeTaken;
 	}
 	
 	public int TrialNum() {
