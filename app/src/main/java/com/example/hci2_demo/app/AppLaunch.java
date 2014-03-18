@@ -48,7 +48,7 @@ public class AppLaunch extends Activity {
         Trial nextTrial = this.experiment.nextTrial();
 
         if (nextTrial != null) {
-            this.setTitle(nextTrial.searchAnimal.name);
+            this.setTitle(nextTrial.searchAnimal.name + " - " + nextTrial.treatment.toString());
             getFragmentManager().beginTransaction()
                     .replace(R.id.container, new PreTrialFragment(this, getApplicationContext()))
                     .commit();
