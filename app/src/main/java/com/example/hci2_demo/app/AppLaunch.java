@@ -1,10 +1,13 @@
 package com.example.hci2_demo.app;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import experiment.Experiment;
@@ -72,5 +75,10 @@ public class AppLaunch extends Activity {
             Toast.makeText(AppLaunch.this, "There are no email clients installed.", Toast.LENGTH_SHORT).show();
         }
 
+    }
+
+    public void closeKeyboard(EditText editText) {
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(editText.getWindowToken(), 0);
     }
 }

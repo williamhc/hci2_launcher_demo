@@ -1,6 +1,5 @@
 package com.example.hci2_demo.app;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.text.Editable;
@@ -16,23 +15,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import experiment.Animal;
-import experiment.Trial;
 
 public class KeyboardFragment extends LauncherFragment {
-    private Trial trial;
-    private Activity appLaunch;
-    private int count;
+    private ViewGroup rootView;
 
     public KeyboardFragment(AppLaunch appLaunch, Context context) {
         super(appLaunch, context);
-        this.appLaunch = appLaunch;
-        count = 0;
     }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
-        final ViewGroup rootView = (ViewGroup) inflater.inflate(this.getLayoutID(), container, false);
+
+        this.rootView = (ViewGroup) inflater.inflate(this.getLayoutID(), container, false);
         EditText appFilterText = (EditText) rootView.findViewById(R.id.editText);
         final LauncherFragment frag = this;
 
@@ -89,6 +84,16 @@ public class KeyboardFragment extends LauncherFragment {
         ListView lv = (ListView) rootView.findViewById(R.id.listView);
         lv.setAdapter(adapter);
         return rootView;
+    }
+
+    @Override
+    public void appWasTapped(Animal animal) {
+        if (this.appLaunch.experiment.currentTrial().searchAnimal.name.compareToIgnoreCase(animal.name) == 0){
+            EditText appFilterText = (EditText) this.rootView.findViewById(R.id.editText);
+
+            this.appLaunch.closeKeyboard(appFilterText);
+        }
+        super.appWasTapped(animal);
     }
 
     public int getLayoutID() {
