@@ -42,9 +42,10 @@ public class GPSLauncherFragment extends LauncherFragment {
         TextView locationName = (TextView) rootView.findViewById(R.id.locationTextView);
         locationName.setText("Uncategorized location");
 
-        ImageButton appDrawer = new ImageButton(context);
-        Drawable appDrawerble = getResources().getDrawable(R.drawable.zzzappdrawer);
-        appDrawer.setImageDrawable(appDrawerble);
+        TextView appDrawer = new TextView(context);
+        appDrawer.setText("App Drawer");
+        appDrawer.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.zzzappdrawer, 0, 0);
+        appDrawer.setPadding(30, 30, 30, 30);
         //System.out.println("DEBUG: the appDrawer button is: " + appDrawer);
         appDrawer.setOnTouchListener(new View.OnTouchListener() {
             @Override
