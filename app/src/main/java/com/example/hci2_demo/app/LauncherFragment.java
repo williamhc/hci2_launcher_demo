@@ -23,7 +23,7 @@ public abstract class LauncherFragment extends Fragment {
     private int numErrors;
     private Calendar startTime;
     List<View> icons;
-    int ICON_PADDING = 30;
+    int ICON_PADDING = 25;
 
     public abstract int getLayoutID();
 
@@ -52,8 +52,6 @@ public abstract class LauncherFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         ViewGroup rootView = (ViewGroup) inflater.inflate(this.getLayoutID(), container, false);
-
-//        GridView animalGrid = (GridView) rootView.findViewById(R.id.gr);
 
         for (int i = 0; i < this.trial.allAnimals.length; i++) {
             TextView animalButton;

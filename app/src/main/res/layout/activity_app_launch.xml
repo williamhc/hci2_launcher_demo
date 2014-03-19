@@ -3,6 +3,7 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:windowSoftInputMode="stateHidden"
     tools:context="com.example.hci2_demo.app.AppLaunch"
     tools:ignore="MergeRootFrame" >
 

@@ -131,7 +131,10 @@ public class Experiment {
 	}
 
     public Trial currentTrial() {
-        return this.listOfTrials[this.currentTrialIndex];
+        if(this.currentTrialIndex < this.listOfTrials.length)
+            return this.listOfTrials[this.currentTrialIndex];
+        else // return the last element
+            return null;
     }
 
 

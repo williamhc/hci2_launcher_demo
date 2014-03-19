@@ -88,12 +88,13 @@ public class KeyboardFragment extends LauncherFragment {
 
     @Override
     public void appWasTapped(Animal animal) {
-        if (this.appLaunch.experiment.currentTrial().searchAnimal.name.compareToIgnoreCase(animal.name) == 0){
+        if (this.appLaunch.experiment.currentTrial() != null &&
+                this.appLaunch.experiment.currentTrial().searchAnimal.name.compareToIgnoreCase(animal.name) == 0){
             EditText appFilterText = (EditText) this.rootView.findViewById(R.id.editText);
 
             this.appLaunch.closeKeyboard(appFilterText);
+            super.appWasTapped(animal);
         }
-        super.appWasTapped(animal);
     }
 
     public int getLayoutID() {
