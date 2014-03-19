@@ -3,11 +3,8 @@ package com.example.hci2_demo.app;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -18,6 +15,7 @@ public class FittsFragment extends LauncherFragment {
 
     public FittsFragment(AppLaunch appLaunch, Context context){
         super(appLaunch, context);
+        this.ICON_PADDING = 15;
     }
 
     public int getLayoutID(){

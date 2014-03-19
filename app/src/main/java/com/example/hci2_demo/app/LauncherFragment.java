@@ -22,6 +22,7 @@ public abstract class LauncherFragment extends Fragment {
     private int numErrors;
     private Calendar startTime;
     List<View> icons;
+    int ICON_PADDING = 30;
 
     public abstract int getLayoutID();
 
@@ -60,7 +61,7 @@ public abstract class LauncherFragment extends Fragment {
             animalButton = new TextView(context);
             animalButton.setText(animal.name.substring(0, 1).toUpperCase() + animal.name.substring(1));
             animalButton.setCompoundDrawablesWithIntrinsicBounds(0, animal.img_id, 0, 0);
-            animalButton.setPadding(30, 30, 30, 30);
+            animalButton.setPadding(ICON_PADDING, ICON_PADDING, ICON_PADDING, ICON_PADDING);
             final LauncherFragment f = this;
             final int finalI = i;
             l = new View.OnClickListener() {
