@@ -4,6 +4,7 @@ import android.app.Fragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -36,6 +37,7 @@ public abstract class LauncherFragment extends Fragment {
     }
 
     public void appWasTapped(Animal animal) {
+        System.out.println("Launcher Fragment");
         if (this.trial.searchAnimal.name.equals(animal.name)){
             Calendar now = Calendar.getInstance();
             trial.timeTaken = now.getTimeInMillis() - this.startTime.getTimeInMillis();
@@ -55,7 +57,7 @@ public abstract class LauncherFragment extends Fragment {
 
         for (int i = 0; i < this.trial.allAnimals.length; i++) {
             TextView animalButton;
-            View.OnClickListener l;
+            View.OnTouchListener l;
             Animal animal = this.trial.allAnimals[i];
 
             animalButton = new TextView(context);
@@ -64,14 +66,15 @@ public abstract class LauncherFragment extends Fragment {
             animalButton.setPadding(ICON_PADDING, ICON_PADDING, ICON_PADDING, ICON_PADDING);
             final LauncherFragment f = this;
             final int finalI = i;
-            l = new View.OnClickListener() {
+            l = new View.OnTouchListener() {
                 @Override
-                public void onClick(View view) {
+                public boolean onTouch(View view, MotionEvent motionEvent) {
                     Animal animal = f.trial.allAnimals[finalI];
                     ((LauncherFragment)f).appWasTapped(animal);
+                    return true;
                 }
             };
-            animalButton.setOnClickListener(l);
+            animalButton.setOnTouchListener(l);
 
             this.icons.add(animalButton);
         }

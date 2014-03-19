@@ -5,6 +5,7 @@ import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
@@ -45,18 +46,19 @@ public class GPSLauncherFragment extends LauncherFragment {
         Drawable appDrawerble = getResources().getDrawable(R.drawable.zzzappdrawer);
         appDrawer.setImageDrawable(appDrawerble);
         //System.out.println("DEBUG: the appDrawer button is: " + appDrawer);
-        appDrawer.setOnClickListener(new View.OnClickListener() {
+        appDrawer.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public void onClick(View view) {
+            public boolean onTouch(View view, MotionEvent motionEvent) {
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
                 ft.replace(R.id.container, new AppDrawerFragment(appLaunch, context));
                 ft.commit();
+                return true;
             }
         });
 
         for (int i = 0; i < MAIN_PAGE - 1; i++) {
             TextView animalButton;
-            View.OnClickListener l;
+            View.OnTouchListener l;
             Animal animal = this.trial.allAnimals[i];
 
             animalButton = new TextView(context);
@@ -65,14 +67,15 @@ public class GPSLauncherFragment extends LauncherFragment {
             animalButton.setPadding(30, 30, 30, 30);
             final LauncherFragment f = this;
             final int finalI = i;
-            l = new View.OnClickListener() {
+            l = new View.OnTouchListener() {
                 @Override
-                public void onClick(View view) {
+                public boolean onTouch(View view, MotionEvent motionEvent) {
                     Animal animal = f.trial.allAnimals[finalI];
                     ((LauncherFragment)f).appWasTapped(animal);
+                    return true;
                 }
             };
-            animalButton.setOnClickListener(l);
+            animalButton.setOnTouchListener(l);
 
             this.mainScreen.add(animalButton);
         }

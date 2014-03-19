@@ -92,20 +92,25 @@ public class Experiment {
 		for (int index = 1; index <= actualTrials; index++) {
 			treatmentsRemaining.add(Integer.valueOf(index));
 		}
-		
-		while (!treatmentsRemaining.isEmpty()) {
-			int randomNumber = (int)(Math.random() * 4) + 1;
-			if (randomNumber == 1 && treatmentsRemaining.contains(Integer.valueOf(1)))
-				addTrials(new Treatment(technique, 150, false), this.infrequent150, animalController.AnimalImages150());
-			else if (randomNumber == 2 && treatmentsRemaining.contains(Integer.valueOf(2)))
-				addTrials(new Treatment(technique, 50, false), this.infrequent50, animalController.AnimalImages50());
-			else if (randomNumber == 3 && treatmentsRemaining.contains(Integer.valueOf(3)))
-				addTrials(new Treatment(technique, 150, true), this.frequent150, animalController.AnimalImages150());
-			else if (randomNumber == 4 && treatmentsRemaining.contains(Integer.valueOf(4)))
-				addTrials(new Treatment(technique, 50, true), this.frequent50, animalController.AnimalImages50());
-			
-			treatmentsRemaining.remove(Integer.valueOf(randomNumber));
-		}
+
+        if (actualTrials == 1) {
+            addTrials(new Treatment(technique, 50, true), this.frequent50, animalController.AnimalImages50());
+        }
+        else {
+            while (!treatmentsRemaining.isEmpty()) {
+                int randomNumber = ((int)(Math.random() * 4)) + 1;
+                if (randomNumber == 1 && treatmentsRemaining.contains(Integer.valueOf(1)))
+                    addTrials(new Treatment(technique, 150, false), this.infrequent150, animalController.AnimalImages150());
+                else if (randomNumber == 2 && treatmentsRemaining.contains(Integer.valueOf(2)))
+                    addTrials(new Treatment(technique, 50, false), this.infrequent50, animalController.AnimalImages50());
+                else if (randomNumber == 3 && treatmentsRemaining.contains(Integer.valueOf(3)))
+                    addTrials(new Treatment(technique, 150, true), this.frequent150, animalController.AnimalImages150());
+                else if (randomNumber == 4 && treatmentsRemaining.contains(Integer.valueOf(4)))
+                    addTrials(new Treatment(technique, 50, true), this.frequent50, animalController.AnimalImages50());
+
+                treatmentsRemaining.remove(Integer.valueOf(randomNumber));
+            }
+        }
 	}
 	
 	private void addTrials(Treatment treatment, Animal[] animals, Animal[] allAnimals) {
