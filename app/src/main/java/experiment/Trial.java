@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.Comparator;
 
 public class Trial {
-	private int trialNum;
+	public int trialNum;
 	private int participantNum;
 	public Treatment treatment;
 	public int numOfErrors;

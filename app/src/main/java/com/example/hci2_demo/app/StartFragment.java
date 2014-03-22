@@ -35,7 +35,7 @@ public class StartFragment extends Fragment {
 
         start.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                Experiment experiment = new Experiment(context, 60, "ALL", 5, participantNum);
+                Experiment experiment = new Experiment(context, 60, "ALL", 4, participantNum);
                 appLaunch.experiment = experiment;
                 appLaunch.startNextTrial();
             }
@@ -43,7 +43,7 @@ public class StartFragment extends Fragment {
 
         location.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                Experiment experiment = new Experiment(context, 1, "GPS Launcher", 1, participantNum);
+                Experiment experiment = new Experiment(context, 4, "GPS Launcher", 4, participantNum);
                 appLaunch.experiment = experiment;
                 appLaunch.startNextTrial();
             }
@@ -51,7 +51,7 @@ public class StartFragment extends Fragment {
 
         keyboard.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                Experiment experiment = new Experiment(context, 1, "Keyboard Search", 1, participantNum);
+                Experiment experiment = new Experiment(context, 4, "Keyboard Search", 4, participantNum);
                 appLaunch.experiment = experiment;
                 appLaunch.startNextTrial();
             }
@@ -59,7 +59,7 @@ public class StartFragment extends Fragment {
 
         fitts.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                Experiment experiment = new Experiment(context, 1, "Fitts' Wheel", 1, participantNum);
+                Experiment experiment = new Experiment(context, 4, "Fitts' Wheel", 4, participantNum);
                 appLaunch.experiment = experiment;
                 appLaunch.startNextTrial();
             }

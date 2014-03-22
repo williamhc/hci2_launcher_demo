@@ -42,7 +42,7 @@ public class PreTrialFragment extends Fragment {
 
         Treatment treatment = this.trial.treatment;
         TextView trialInfo = (TextView)rootView.findViewById(R.id.trialInfo);
-        trialInfo.setText(treatment.Technique() + ", " + treatment.AppsInstalled() +
+        trialInfo.setText(trial.trialNum + ", " + treatment.Technique() + ", " + treatment.AppsInstalled() +
                 " total apps, " + (treatment.IsFrequentlyUsed() ? "": "in") + "frequent apps");
         return rootView;
     }

@@ -82,21 +82,18 @@ public class Experiment {
 	}
 	
 	private void addTrialsForTechnique(String technique, int trials) {
-		LinkedList<Integer> treatmentsRemaining = new LinkedList<Integer>();
-		int actualTrials = 4;
-
-        if (trials < 4) {
-            actualTrials = trials;
-        }
-
-		for (int index = 1; index <= actualTrials; index++) {
-			treatmentsRemaining.add(Integer.valueOf(index));
-		}
-
-        if (actualTrials == 1) {
-            addTrials(new Treatment(technique, 50, true), this.frequent50, animalController.AnimalImages50());
+        if (trials == 4) {
+            addOneTrial(new Treatment(technique, 50, true), this.frequent50, animalController.AnimalImages50(), 0);
+            addOneTrial(new Treatment(technique, 150, false), this.infrequent150, animalController.AnimalImages150(), 1);
+            addOneTrial(new Treatment(technique, 150, true), this.frequent150, animalController.AnimalImages150(), 2);
+            addOneTrial(new Treatment(technique, 50, true), this.frequent50, animalController.AnimalImages50(), 3);
         }
         else {
+            LinkedList<Integer> treatmentsRemaining = new LinkedList<Integer>();
+            for (int index = 1; index <= trials; index++) {
+                treatmentsRemaining.add(Integer.valueOf(index));
+            }
+
             while (!treatmentsRemaining.isEmpty()) {
                 int randomNumber = ((int)(Math.random() * 4)) + 1;
                 if (randomNumber == 1 && treatmentsRemaining.contains(Integer.valueOf(1)))
@@ -119,6 +116,11 @@ public class Experiment {
 			listOfTrials[currentTrialIndex] = new Trial(currentTrialIndex + 1, participantNumber, treatment, animals[index], allAnimals);
 		}
 	}
+
+    private void addOneTrial(Treatment treatment, Animal[] animals, Animal[] allAnimals, int animalIndex) {
+        currentTrialIndex++;
+        listOfTrials[currentTrialIndex] = new Trial(currentTrialIndex + 1, participantNumber, treatment, animals[animalIndex], allAnimals);
+    }
 	
 	public Trial nextTrial() {
         this.currentTrialIndex += 1;
