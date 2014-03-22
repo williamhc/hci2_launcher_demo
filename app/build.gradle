@@ -20,7 +20,4 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile files('src/main/res/android-support-4.0.jar')
-    compile files('src/main/res/android-support-v4.jar')
-    compile files('src/main/res/android-support-v4.jar/android-support-v4.jar')
 }

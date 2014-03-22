@@ -72,7 +72,7 @@ public class GPSLauncherFragment extends LauncherFragment {
                 @Override
                 public boolean onTouch(View view, MotionEvent motionEvent) {
                     Animal animal = f.trial.allAnimals[finalI];
-                    ((LauncherFragment)f).appWasTapped(animal);
+                    ((LauncherFragment)f).appWasTapped(animal, motionEvent);
                     return true;
                 }
             };

@@ -43,7 +43,7 @@ public class KeyboardFragment extends LauncherFragment {
                 ArrayList<String> newAnimals = updateListView(charSequence);
                 if (newAnimals.size() == 1){
                     Animal lastAnimal = new Animal(null, 1, newAnimals.get(0));
-                    frag.appWasTapped(lastAnimal);
+                    frag.appShouldLaunch(lastAnimal);
                 }
             }
 
@@ -87,13 +87,13 @@ public class KeyboardFragment extends LauncherFragment {
     }
 
     @Override
-    public void appWasTapped(Animal animal) {
+    public void appShouldLaunch(Animal animal) {
         if (this.appLaunch.experiment.currentTrial() != null &&
                 this.appLaunch.experiment.currentTrial().searchAnimal.name.compareToIgnoreCase(animal.name) == 0){
             EditText appFilterText = (EditText) this.rootView.findViewById(R.id.editText);
 
             this.appLaunch.closeKeyboard(appFilterText);
-            super.appWasTapped(animal);
+            super.appShouldLaunch(animal);
         }
     }
 

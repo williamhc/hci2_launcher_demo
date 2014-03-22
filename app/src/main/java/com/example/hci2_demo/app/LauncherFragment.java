@@ -26,8 +26,6 @@ public abstract class LauncherFragment extends Fragment {
     List<View> icons;
     int ICON_PADDING = 25;
     boolean isComplete = false;
-    long timeLastAnimalTapped = 0;
-    String lastAnimalTapped = "";
 
     public abstract int getLayoutID();
 
@@ -40,42 +38,52 @@ public abstract class LauncherFragment extends Fragment {
         this.startTime = Calendar.getInstance().getTimeInMillis();
     }
 
-    public void appWasTapped(Animal animal, MotionEvent event) {
+    public void appShouldLaunch(Animal animal) {
         System.out.println("Launcher Fragment");
-
-//        int action = MotionEventCompat.getActionMasked(event);
-//
-//        switch(action) {
-//            case (MotionEvent.ACTION_DOWN) :
-//                System.out.println("Action was DOWN");
-//                break;
-//            case (MotionEvent.ACTION_MOVE) :
-//                System.out.println("Action was MOVE");
-//                break;
-//            case (MotionEvent.ACTION_UP) :
-//                System.out.println("Action was UP");
-//                break;
-//            case (MotionEvent.ACTION_CANCEL) :
-//                System.out.println("Action was CANCEL");
-//                break;
-//            case (MotionEvent.ACTION_OUTSIDE) :
-//                System.out.println("Movement occurred outside bounds " +
-//                        "of current screen element");
-//                break;
-//        }
         long currentTimeInMillis = Calendar.getInstance().getTimeInMillis();
-        long timeDifferenceSeconds = TimeUnit.MILLISECONDS.toSeconds(currentTimeInMillis - timeLastAnimalTapped);
-        timeLastAnimalTapped = currentTimeInMillis;
         if (this.trial.searchAnimal.name.equals(animal.name)){
             if (!isComplete) {
-                trial.timeTaken = TimeUnit.MILLISECONDS.toSeconds(currentTimeInMillis - this.startTime);
+                trial.timeTaken = currentTimeInMillis - this.startTime;
                 this.appLaunch.startNextTrial();
                 isComplete = true;
             }
-        } else if (timeDifferenceSeconds > 5 || !lastAnimalTapped.equals(animal.name))  {
-            lastAnimalTapped = animal.name;
+        } else  {
             this.trial.numOfErrors += 1;
         }
+    }
+
+    public void appWasTapped(Animal animal, MotionEvent event) {
+        System.out.println("Launcher Fragment");
+        int action = event.getAction();
+        long currentTimeInMillis = Calendar.getInstance().getTimeInMillis();
+
+        switch(action) {
+            case (MotionEvent.ACTION_DOWN) :
+                System.out.println("Action was DOWN");
+                break;
+            case (MotionEvent.ACTION_MOVE) :
+                System.out.println("Action was MOVE");
+                break;
+            case (MotionEvent.ACTION_UP) :
+                if (this.trial.searchAnimal.name.equals(animal.name)){
+                    if (!isComplete) {
+                        trial.timeTaken = currentTimeInMillis - this.startTime;
+                        this.appLaunch.startNextTrial();
+                        isComplete = true;
+                    }
+                } else  {
+                    this.trial.numOfErrors += 1;
+                }
+                System.out.println("Action was UP");
+                break;
+            case (MotionEvent.ACTION_CANCEL) :
+                System.out.println("Action was CANCEL");
+                break;
+            case (MotionEvent.ACTION_OUTSIDE) :
+                System.out.println("Movement occurred outside bounds " +
+                        "of current screen element");
+                break;
+        };
     }
 
     @Override
