@@ -107,11 +107,11 @@ public class AnimalController {
         return frequentAnimals;
 	}
 	
-	public Animal[] AnimalImages150() {
+	public Animal[] Animals150() {
 		return animalImages150;
 	}
 	
-	public Animal[] AnimalImages50() {
+	public Animal[] Animals50() {
 		return animalImages50;
 	}
 }

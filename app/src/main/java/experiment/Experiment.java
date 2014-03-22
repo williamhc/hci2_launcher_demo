@@ -83,10 +83,10 @@ public class Experiment {
 	
 	private void addTrialsForTechnique(String technique, int trials) {
         if (trials == 1) {
-            addOneTrial(new Treatment(technique, 50, true), this.frequent50, animalController.AnimalImages50(), 0);
-            addOneTrial(new Treatment(technique, 150, false), this.infrequent150, animalController.AnimalImages150(), 0);
-            addOneTrial(new Treatment(technique, 150, true), this.frequent150, animalController.AnimalImages150(), 1);
-            addOneTrial(new Treatment(technique, 50, true), this.frequent50, animalController.AnimalImages50(), 1);
+            addOneTrial(new Treatment(technique, 50, true), this.frequent50[0], animalController.Animals50());
+            addOneTrial(new Treatment(technique, 150, false), this.infrequent150[0], animalController.Animals150());
+            addOneTrial(new Treatment(technique, 150, true), this.frequent150[0], animalController.Animals150());
+            addOneTrial(new Treatment(technique, 50, false), this.infrequent50[0], animalController.Animals50());
         }
         else {
             LinkedList<Integer> treatmentsRemaining = new LinkedList<Integer>();
@@ -97,13 +97,13 @@ public class Experiment {
             while (!treatmentsRemaining.isEmpty()) {
                 int randomNumber = ((int)(Math.random() * 4)) + 1;
                 if (randomNumber == 1 && treatmentsRemaining.contains(Integer.valueOf(1)))
-                    addTrials(new Treatment(technique, 150, false), this.infrequent150, animalController.AnimalImages150());
+                    addTrials(new Treatment(technique, 150, false), this.infrequent150, animalController.Animals150());
                 else if (randomNumber == 2 && treatmentsRemaining.contains(Integer.valueOf(2)))
-                    addTrials(new Treatment(technique, 50, false), this.infrequent50, animalController.AnimalImages50());
+                    addTrials(new Treatment(technique, 50, false), this.infrequent50, animalController.Animals50());
                 else if (randomNumber == 3 && treatmentsRemaining.contains(Integer.valueOf(3)))
-                    addTrials(new Treatment(technique, 150, true), this.frequent150, animalController.AnimalImages150());
+                    addTrials(new Treatment(technique, 150, true), this.frequent150, animalController.Animals150());
                 else if (randomNumber == 4 && treatmentsRemaining.contains(Integer.valueOf(4)))
-                    addTrials(new Treatment(technique, 50, true), this.frequent50, animalController.AnimalImages50());
+                    addTrials(new Treatment(technique, 50, true), this.frequent50, animalController.Animals50());
 
                 treatmentsRemaining.remove(Integer.valueOf(randomNumber));
             }
@@ -117,9 +117,9 @@ public class Experiment {
 		}
 	}
 
-    private void addOneTrial(Treatment treatment, Animal[] animals, Animal[] allAnimals, int animalIndex) {
+    private void addOneTrial(Treatment treatment, Animal animal, Animal[] allAnimals) {
         currentTrialIndex++;
-        listOfTrials[currentTrialIndex] = new Trial(currentTrialIndex + 1, participantNumber, treatment, animals[animalIndex], allAnimals);
+        listOfTrials[currentTrialIndex] = new Trial(currentTrialIndex + 1, participantNumber, treatment, animal, allAnimals);
     }
 	
 	public Trial nextTrial() {

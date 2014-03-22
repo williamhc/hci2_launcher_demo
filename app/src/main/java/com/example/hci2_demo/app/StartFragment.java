@@ -1,6 +1,5 @@
 package com.example.hci2_demo.app;
 
-import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
 import android.os.Bundle;
@@ -11,8 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-
-import java.util.ArrayList;
 
 import experiment.Experiment;
 
@@ -43,7 +40,7 @@ public class StartFragment extends Fragment {
 
         location.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                Experiment experiment = new Experiment(context, 4, "GPS Launcher", 2, participantNum);
+                Experiment experiment = new Experiment(context, 4, "GPS Launcher", 1, participantNum);
                 appLaunch.experiment = experiment;
                 appLaunch.startNextTrial();
             }
@@ -51,7 +48,7 @@ public class StartFragment extends Fragment {
 
         keyboard.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                Experiment experiment = new Experiment(context, 4, "Keyboard Search", 2, participantNum);
+                Experiment experiment = new Experiment(context, 4, "Keyboard Search", 1, participantNum);
                 appLaunch.experiment = experiment;
                 appLaunch.startNextTrial();
             }
@@ -59,7 +56,7 @@ public class StartFragment extends Fragment {
 
         fitts.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                Experiment experiment = new Experiment(context, 4, "Fitts' Wheel", 2, participantNum);
+                Experiment experiment = new Experiment(context, 4, "Fitts' Wheel", 1, participantNum);
                 appLaunch.experiment = experiment;
                 appLaunch.startNextTrial();
             }
