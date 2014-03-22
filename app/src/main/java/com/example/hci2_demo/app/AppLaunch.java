@@ -50,7 +50,7 @@ public class AppLaunch extends Activity {
         if (nextTrial != null) {
             this.setTitle(nextTrial.searchAnimal.name + " - " + nextTrial.treatment.toString());
             getFragmentManager().beginTransaction()
-                    .replace(R.id.container, new PreTrialFragment(this, getApplicationContext()))
+                    .replace(R.id.container, new PreTrialFragment(this, getApplicationContext(), false))
                     .commit();
         }
         else {

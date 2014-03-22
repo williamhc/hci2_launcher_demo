@@ -20,30 +20,41 @@ public class PreTrialFragment extends Fragment {
     private Trial trial;
     private AppLaunch appLaunch;
     public Context context;
+    public boolean isBreakComplete = false;
 
-    public PreTrialFragment(AppLaunch appLaunch, Context context) {
+    public PreTrialFragment(AppLaunch appLaunch, Context context, boolean isBreakComplete) {
         this.appLaunch = appLaunch;
         this.context = context;
         this.trial = appLaunch.experiment.currentTrial();
+        this.isBreakComplete = isBreakComplete;
     }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.prep_screen, container, false);
 
-        Button startButton = (Button) rootView.findViewById(R.id.button);
-        addListenerToStartButton(startButton);
+        if ((trial.trialNum == 21 || trial.trialNum == 41) && !isBreakComplete) {
+            getFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.container, new BreakFragment(appLaunch, context))
+                    .commit();
+        }
+        else {
+            Button startButton = (Button) rootView.findViewById(R.id.button);
+            addListenerToStartButton(startButton);
 
-        TextView animalName = (TextView)rootView.findViewById(R.id.textView);
-        animalName.setText(trial.searchAnimal.name);
+            TextView animalName = (TextView)rootView.findViewById(R.id.textView);
+            animalName.setText(trial.searchAnimal.name);
 
-        ImageView iv = (ImageView)rootView.findViewById(R.id.imageView);
-        iv.setImageDrawable(this.trial.searchAnimal.img);
+            ImageView iv = (ImageView)rootView.findViewById(R.id.imageView);
+            iv.setImageDrawable(this.trial.searchAnimal.img);
 
-        Treatment treatment = this.trial.treatment;
-        TextView trialInfo = (TextView)rootView.findViewById(R.id.trialInfo);
-        trialInfo.setText(trial.trialNum + ", " + treatment.Technique() + ", " + treatment.AppsInstalled() +
-                " total apps, " + (treatment.IsFrequentlyUsed() ? "": "in") + "frequent apps");
+            Treatment treatment = this.trial.treatment;
+            TextView trialInfo = (TextView)rootView.findViewById(R.id.trialInfo);
+            trialInfo.setText(trial.trialNum + ", " + treatment.Technique() + ", " + treatment.AppsInstalled() +
+                    " total apps, " + (treatment.IsFrequentlyUsed() ? "": "in") + "frequent apps");
+        }
+
         return rootView;
     }
 
@@ -60,6 +71,7 @@ public class PreTrialFragment extends Fragment {
 
     private Fragment getFragForTrial() {
         String technique = trial.treatment.Technique();
+
         if (technique.equals("Fitts' Wheel"))
             return new FittsFragment(appLaunch, context);
         else if (technique.equals("GPS Launcher"))
@@ -68,6 +80,6 @@ public class PreTrialFragment extends Fragment {
             return new KeyboardFragment(appLaunch, context);
         }
 
-        return new PreTrialFragment(appLaunch, context);
+        return new PreTrialFragment(appLaunch, context, false);
     }
 }

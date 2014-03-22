@@ -82,15 +82,15 @@ public class Experiment {
 	}
 	
 	private void addTrialsForTechnique(String technique, int trials) {
-        if (trials == 4) {
+        if (trials == 1) {
             addOneTrial(new Treatment(technique, 50, true), this.frequent50, animalController.AnimalImages50(), 0);
-            addOneTrial(new Treatment(technique, 150, false), this.infrequent150, animalController.AnimalImages150(), 1);
-            addOneTrial(new Treatment(technique, 150, true), this.frequent150, animalController.AnimalImages150(), 2);
-            addOneTrial(new Treatment(technique, 50, true), this.frequent50, animalController.AnimalImages50(), 3);
+            addOneTrial(new Treatment(technique, 150, false), this.infrequent150, animalController.AnimalImages150(), 0);
+            addOneTrial(new Treatment(technique, 150, true), this.frequent150, animalController.AnimalImages150(), 1);
+            addOneTrial(new Treatment(technique, 50, true), this.frequent50, animalController.AnimalImages50(), 1);
         }
         else {
             LinkedList<Integer> treatmentsRemaining = new LinkedList<Integer>();
-            for (int index = 1; index <= trials; index++) {
+            for (int index = 1; index <= trials-1; index++) {
                 treatmentsRemaining.add(Integer.valueOf(index));
             }
 
