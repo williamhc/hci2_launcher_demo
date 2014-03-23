@@ -44,7 +44,7 @@ public abstract class LauncherFragment extends Fragment {
         if (this.trial.searchAnimal.name.equals(animal.name)){
             if (!isComplete) {
                 trial.timeTaken = currentTimeInMillis - this.startTime;
-
+                animal.img = trial.searchAnimal.img;
                 //Now show the image popup screen
                 this.appLaunch.showTappedAnimal(animal);
 
