@@ -31,6 +31,9 @@ public class KeyboardFragment extends LauncherFragment {
         EditText appFilterText = (EditText) rootView.findViewById(R.id.editText);
         final LauncherFragment frag = this;
 
+        appFilterText.requestFocus();
+        this.appLaunch.openKeyboard(appFilterText);
+
         appFilterText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
