@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Animal name"
+        android:id="@+id/textView"
+        android:layout_gravity="center_horizontal" />
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="350dp"
+        android:id="@+id/imageView"
+        android:paddingTop="30dp"
+        android:paddingBottom="30dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Goto Next Trial"
+        android:id="@+id/button"
+        android:layout_gravity="center_horizontal" />
+</LinearLayout>
