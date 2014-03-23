@@ -44,7 +44,10 @@ public abstract class LauncherFragment extends Fragment {
         if (this.trial.searchAnimal.name.equals(animal.name)){
             if (!isComplete) {
                 trial.timeTaken = currentTimeInMillis - this.startTime;
-                this.appLaunch.startNextTrial();
+
+                //Now show the image popup screen
+                this.appLaunch.showTappedAnimal(animal);
+
                 isComplete = true;
             }
         } else  {
@@ -66,9 +69,15 @@ public abstract class LauncherFragment extends Fragment {
                 break;
             case (MotionEvent.ACTION_UP) :
                 if (this.trial.searchAnimal.name.equals(animal.name)){
+                    //TODO: show the animal that was tapped in a fragment
+                    //for a few seconds
                     if (!isComplete) {
                         trial.timeTaken = currentTimeInMillis - this.startTime;
-                        this.appLaunch.startNextTrial();
+
+                        //Now show the image popup screen
+                        this.appLaunch.showTappedAnimal(animal);
+
+                        //this.appLaunch.startNextTrial();
                         isComplete = true;
                     }
                 } else  {

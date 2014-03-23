@@ -10,6 +10,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import experiment.Animal;
 import experiment.Experiment;
 import experiment.Trial;
 
@@ -42,6 +43,19 @@ public class AppLaunch extends Activity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void showTappedAnimal(Animal animal)
+    {
+        //The ImagePopupFragment handles the
+        //startNextTrial call
+        if(animal != null)
+        {
+            this.setTitle(animal.name);
+            getFragmentManager().beginTransaction()
+               .replace(R.id.container, new ImagePopupFragment(getApplicationContext(), this, animal))
+               .commit();
+        }
     }
 
     public void startNextTrial() {
